@@ -1,1 +1,700 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Student Profile</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body><header class="hero"><div class="badge">Student Profile</div><h1>PRAGATHI BAI</h1><p class="sub">B.Tech Information Technology • Second Year</p><img src="profile.jpeg" class="profile"></header><section class="card"><h2>About Me</h2><p>Hi! I'm Pragathi Bai, currently pursuing my second year of B.Tech in Information Technology. I am currently focused on building a strong foundation in programming, web development and computer science concepts. Every day I work towards improving my technical skills through continuous learning, hands-on projects and practical experience. My aim is to strengthen my knowledge, perform well academically and prepare myself for a successful career in the IT industry.</p></section><div class="grid"><section class="card"><h2>❤️ Hobbies</h2><ul><li>Reading Books</li><li>Watching Movies</li><li>Cooking</li><li>Listening to Music</li></ul></section><section class="card"><h2>🎯 Academic Goals</h2><ol><li>Score S & A Grades</li><li>Win a Hackathon</li><li>Learn New Technologies</li><li>Build Real-World Projects</li></ol></section></div><section class="card"><h2>📚 Academic Performance</h2><table><tr><th>No</th><th>Subject</th><th>Grade</th></tr><tr><td>1</td><td>Technical English</td><td>A</td></tr><tr><td>2</td><td>Numerical Methods</td><td>A</td></tr><tr><td>3</td><td>Database Management Systems</td><td>A</td></tr><tr><td>4</td><td>Biology & Environmental Science</td><td>A</td></tr><tr><td>5</td><td>Discrete Mathematics</td><td>A</td></tr><tr><td>6</td><td>Python Programming</td><td>A</td></tr><tr><td>7</td><td>Engineering Mathematics I</td><td>A</td></tr><tr><td>8</td><td>Engineering Physics</td><td>A</td></tr><tr><td>9</td><td>Engineering Chemistry</td><td>A</td></tr><tr><td>10</td><td>C Programming</td><td>B</td></tr><tr><td>11</td><td>Applied Mathematics</td><td>B</td></tr><tr><td>12</td><td>Professional Ethics</td><td>B</td></tr></table></section><section class="card center"><a class="btn" href="https://www.saveetha.com/" target="_blank">Visit SIMATS Website</a></section><div class="grid"><div class="card"><h2>📧 Email</h2><p>pragathi.student@gmail.com</p></div><div class="card"><h2>📞 Phone</h2><p>+91 XXXXX XXXXX</p></div></div><footer>Designed by Pragathi Bai 💖</footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Profile</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+
+font-family:'Poppins',sans-serif;
+
+background:linear-gradient(135deg,#FFF3F8,#FFE3EF,#FFD6E8);
+
+color:#333;
+
+}
+
+.hero{
+
+text-align:center;
+
+padding:60px 20px 40px;
+
+}
+
+.badge{
+
+display:inline-block;
+
+padding:10px 25px;
+
+background:white;
+
+color:#E91E63;
+
+font-weight:600;
+
+border-radius:50px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+transition:.4s;
+
+}
+
+.badge:hover{
+
+transform:translateY(-5px);
+
+}
+
+.hero h1{
+
+font-size:70px;
+
+font-weight:700;
+
+background:linear-gradient(90deg,#ff4d94,#ff6fb5,#ff8fc9);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+margin-top:20px;
+
+letter-spacing:3px;
+
+transition:.4s;
+
+}
+
+.hero h1:hover{
+
+transform:scale(1.03);
+
+}
+
+.subtitle{
+
+font-size:20px;
+
+margin-top:10px;
+
+color:#666;
+
+}
+
+.profile{
+
+width:240px;
+
+height:240px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+border:8px solid white;
+
+margin-top:35px;
+
+box-shadow:0 20px 45px rgba(233,30,99,.25);
+
+transition:.4s;
+
+}
+
+.profile:hover{
+
+transform:scale(1.08);
+
+box-shadow:0 25px 60px rgba(233,30,99,.4);
+
+}
+
+section{
+
+width:90%;
+
+max-width:1100px;
+
+margin:35px auto;
+
+background:white;
+
+padding:35px;
+
+border-radius:25px;
+
+box-shadow:0 15px 35px rgba(233,30,99,.12);
+
+transition:.35s;
+
+}
+
+section:hover{
+
+transform:translateY(-8px);
+
+}
+
+h2{
+
+color:#E91E63;
+
+margin-bottom:18px;
+
+font-size:28px;
+
+}
+
+.about{
+
+line-height:1.9;
+
+font-size:17px;
+
+color:#555;
+
+}
+
+.flex{
+
+display:flex;
+
+gap:25px;
+
+flex-wrap:wrap;
+
+}
+
+.box{
+
+flex:1;
+
+min-width:300px;
+
+background:#FFF8FB;
+
+padding:25px;
+
+border-radius:20px;
+
+transition:.4s;
+
+}
+
+.box:hover{
+
+background:#FFE7F1;
+
+transform:translateY(-8px);
+
+}
+
+ul{
+
+list-style:none;
+
+}
+
+ul li{
+
+padding:12px;
+
+margin:10px 0;
+
+background:white;
+
+border-radius:12px;
+
+transition:.35s;
+
+}
+
+ul li:hover{
+
+background:#ff4d94;
+
+color:white;
+
+transform:translateX(10px);
+
+}
+
+ol{
+
+padding-left:20px;
+
+}
+
+ol li{
+
+margin:12px 0;
+
+padding:10px;
+
+background:white;
+
+border-radius:12px;
+
+transition:.35s;
+
+}
+
+ol li:hover{
+
+background:#ff4d94;
+
+color:white;
+
+transform:translateX(10px);
+
+}
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+margin-top:20px;
+
+}
+
+th{
+
+background:#ff4d94;
+
+color:white;
+
+padding:15px;
+
+}
+
+td{
+
+padding:15px;
+
+border-bottom:1px solid #ffd6e8;
+
+}
+
+tr:hover{
+
+background:#FFF1F7;
+
+}
+
+.button{
+
+display:inline-block;
+
+margin-top:25px;
+
+padding:15px 35px;
+
+background:#ff4d94;
+
+color:white;
+
+text-decoration:none;
+
+border-radius:50px;
+
+font-weight:600;
+
+transition:.35s;
+
+}
+
+.button:hover{
+
+background:#E91E63;
+
+transform:scale(1.08);
+
+}
+
+.contact{
+
+display:flex;
+
+gap:20px;
+
+flex-wrap:wrap;
+
+}
+
+.contact .box{
+
+text-align:center;
+
+}
+
+footer{
+
+padding:40px;
+
+}
+
+@media(max-width:768px){
+
+.hero h1{
+
+font-size:45px;
+
+}
+
+.profile{
+
+width:180px;
+
+height:180px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="hero">
+
+<div class="badge">
+
+Student Profile
+
+</div>
+
+<h1>
+
+PRAGATHI BAI
+
+</h1>
+
+<p class="subtitle">
+
+B.Tech Information Technology • Second Year
+
+</p>
+
+<img src="profile.jpeg" class="profile">
+
+</div>
+<section>
+
+<h2>
+
+👋 About Me
+
+</h2>
+
+<p class="about">
+
+Hi! I'm <b>Pragathi Bai</b>, currently pursuing my <b>second year of B.Tech in Information Technology</b>. I am currently focused on building a strong foundation in programming, web development, and computer science concepts. Every day, I work towards improving my technical skills through continuous learning, hands-on projects, and practical experience. My aim is to strengthen my knowledge, perform well academically, and prepare myself for a successful career in the IT industry.
+
+</p>
+
+</section>
+
+<div class="flex">
+
+<div class="box">
+
+<h2>
+
+❤️ Hobbies
+
+</h2>
+
+<ul>
+
+<li>📚 Reading Books</li>
+
+<li>🎬 Watching Movies</li>
+
+<li>👩🏻‍🍳 Cooking</li>
+
+<li>🎧 Listening to Music</li>
+
+</ul>
+
+</div>
+
+<div class="box">
+
+<h2>
+
+🎯 Academic Goals
+
+</h2>
+
+<ol>
+
+<li>Score S & A Grades</li>
+
+<li>Win a Hackathon</li>
+
+<li>Learn New Technologies</li>
+
+<li>Build Real-World Projects</li>
+
+</ol>
+
+</div>
+
+</div>
+
+<section>
+
+<h2>
+
+📚 Academic Performance
+
+</h2>
+
+<table>
+
+<tr>
+
+<th>No</th>
+
+<th>Subject</th>
+
+<th>Grade</th>
+
+</tr>
+
+<tr>
+
+<td>1</td>
+
+<td>Numerical Methods</td>
+
+<td>A</td>
+
+</tr>
+
+<tr>
+
+<td>2</td>
+
+<td>Database Management Systems</td>
+
+<td>A</td>
+
+</tr>
+
+<tr>
+
+<td>3</td>
+
+<td>Biology & Environmental Science</td>
+
+<td>A</td>
+
+</tr>
+
+<tr>
+
+<td>4</td>
+
+<td>Discrete Mathematics</td>
+
+<td>A</td>
+
+</tr>
+
+<tr>
+
+<td>5</td>
+
+<td>Python Programming</td>
+
+<td>A</td>
+
+</tr>
+
+<tr>
+
+<td>6</td>
+
+<td>Engineering Mathematics I</td>
+
+<td>A</td>
+
+</tr>
+
+<tr>
+
+<td>7</td>
+
+<td>Engineering Physics</td>
+
+<td>A</td>
+
+</tr>
+
+<tr>
+
+<td>8</td>
+
+<td>Engineering Chemistry</td>
+
+<td>A</td>
+
+</tr>
+
+<tr>
+
+<td>9</td>
+
+<td>C Programming</td>
+
+<td>B</td>
+
+</tr>
+
+<tr>
+
+<td>10</td>
+
+<td>Applied Mathematics</td>
+
+<td>B</td>
+
+</tr>
+
+<tr>
+
+<td>11</td>
+
+<td>Professional Ethics</td>
+
+<td>B</td>
+
+</tr>
+
+<tr>
+
+<td>12</td>
+
+<td>Aptitude and Competency Skills</td>
+
+<td>B</td>
+
+</tr>
+
+</table>
+
+</section>
+<section style="text-align:center;">
+
+<h2>
+
+🌐 College Website
+
+</h2>
+
+<p>
+
+Click the button below to visit the official SIMATS website.
+
+</p>
+
+<a href="https://www.saveetha.com/" target="_blank" class="button">
+
+Visit SIMATS Website
+
+</a>
+
+</section>
+
+<section>
+
+<h2>
+
+📞 Contact Information
+
+</h2>
+
+<div class="contact">
+
+<div class="box">
+
+<h3>
+
+👤 Name
+
+</h3>
+
+<p>
+
+Pragathi Bai
+
+</p>
+
+</div>
+
+<div class="box">
+
+<h3>
+
+📞 Phone Number
+
+</h3>
+
+<p>
+
+9003152417
+
+</p>
+
+</div>
+
+<div class="box">
+
+<h3>
+
+📧 Email
+
+</h3>
+
+<p>
+
+pragathisham1704@gmail.com
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+</body>
+
+</html>
