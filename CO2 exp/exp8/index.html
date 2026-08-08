@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+AeroSync Airport Display
+
+</title>
+
+<link rel="stylesheet"
+href="style.css">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Poppins:wght@300;400;500;600&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!--=========================
+LOADING SCREEN
+==========================-->
+
+<div id="loader">
+
+<div class="loaderBox">
+
+<i class="fa-solid fa-plane-departure"></i>
+
+<h1>
+
+AEROSYNC
+
+</h1>
+
+<p>
+
+Loading Departure Information...
+
+</p>
+
+<div class="loadingBar">
+
+<div class="loadingFill"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<!--=========================
+HEADER
+==========================-->
+
+<header>
+
+<nav>
+
+<div class="logo">
+
+✈ AeroSync
+
+</div>
+
+<ul>
+
+<li><a href="#clock">Clock</a></li>
+
+<li><a href="#flight">Flight</a></li>
+
+<li><a href="#status">Status</a></li>
+
+<li><a href="#board">Departures</a></li>
+
+<li><a href="#settings">Settings</a></li>
+
+</ul>
+
+<button id="theme">
+
+🌙
+
+</button>
+
+</nav>
+
+</header>
+
+<!--=========================
+DIGITAL CLOCK
+==========================-->
+
+<section id="clock" class="hero">
+
+<h3>
+
+LIVE AIRPORT TIME
+
+</h3>
+
+<h1 id="digitalClock">
+
+00 : 00 : 00
+
+</h1>
+
+<h2 id="currentDay">
+
+Tuesday
+
+</h2>
+
+<p id="currentDate">
+
+04 August 2026
+
+</p>
+
+</section>
+
+<!--=========================
+BOARDING COUNTDOWN
+==========================-->
+
+<section id="flight">
+
+<h2>
+
+Upcoming Departure
+
+</h2>
+
+<div class="flightCard">
+
+<div class="flightInfo">
+
+<h1>
+
+AI 276
+
+</h1>
+
+<p>
+
+Destination
+
+</p>
+
+<h2>
+
+Singapore
+
+</h2>
+
+</div>
+
+<div class="countdownGrid">
+
+<div class="timeBox">
+
+<h1 id="days">
+
+00
+
+</h1>
+
+<p>
+
+Days
+
+</p>
+
+</div>
+
+<div class="timeBox">
+
+<h1 id="hours">
+
+00
+
+</h1>
+
+<p>
+
+Hours
+
+</p>
+
+</div>
+
+<div class="timeBox">
+
+<h1 id="minutes">
+
+00
+
+</h1>
+
+<p>
+
+Minutes
+
+</p>
+
+</div>
+
+<div class="timeBox">
+
+<h1 id="seconds">
+
+00
+
+</h1>
+
+<p>
+
+Seconds
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!--=========================
+FLIGHT STATUS
+==========================-->
+
+<section id="status">
+
+<h2>
+
+Flight Information
+
+</h2>
+
+<div class="statusGrid">
+
+<div class="statusCard">
+
+<h3>
+
+🟢 Status
+
+</h3>
+
+<h1>
+
+BOARDING SOON
+
+</h1>
+
+</div>
+
+<div class="statusCard">
+
+<h3>
+
+🛫 Gate
+
+</h3>
+
+<h1>
+
+B12
+
+</h1>
+
+</div>
+
+<div class="statusCard">
+
+<h3>
+
+🏢 Terminal
+
+</h3>
+
+<h1>
+
+02
+
+</h1>
+
+</div>
+
+<div class="statusCard">
+
+<h3>
+
+🪑 Seat
+
+</h3>
+
+<h1>
+
+18A
+
+</h1>
+
+</div>
+
+</div>
+
+</section>
+
+<!--=========================
+DEPARTURE BOARD
+==========================-->
+
+<section id="board">
+
+<h2>
+
+Live Departure Board
+
+</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Flight</th>
+
+<th>Destination</th>
+
+<th>Gate</th>
+
+<th>Time</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>AI276</td>
+
+<td>Singapore</td>
+
+<td>B12</td>
+
+<td>19:45</td>
+
+<td class="boarding">
+
+BOARDING
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>EK542</td>
+
+<td>Dubai</td>
+
+<td>C08</td>
+
+<td>20:30</td>
+
+<td class="ontime">
+
+ON TIME
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>6E721</td>
+
+<td>Delhi</td>
+
+<td>A04</td>
+
+<td>21:15</td>
+
+<td class="boarding">
+
+BOARDING
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>SQ529</td>
+
+<td>Singapore</td>
+
+<td>D05</td>
+
+<td>22:10</td>
+
+<td class="delayed">
+
+DELAYED
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>BA118</td>
+
+<td>London</td>
+
+<td>E01</td>
+
+<td>23:45</td>
+
+<td class="ontime">
+
+ON TIME
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+<!--=========================
+WORLD CLOCK
+==========================-->
+
+<section class="worldClock">
+
+<h2>
+
+World Time
+
+</h2>
+
+<div class="worldGrid">
+
+<div class="worldCard">
+
+<h3>
+
+🇮🇳 Chennai
+
+</h3>
+
+<h1 id="indiaTime">
+
+18:45
+
+</h1>
+
+</div>
+
+<div class="worldCard">
+
+<h3>
+
+🇸🇬 Singapore
+
+</h3>
+
+<h1 id="singaporeTime">
+
+21:15
+
+</h1>
+
+</div>
+
+<div class="worldCard">
+
+<h3>
+
+🇦🇪 Dubai
+
+</h3>
+
+<h1 id="dubaiTime">
+
+17:15
+
+</h1>
+
+</div>
+
+<div class="worldCard">
+
+<h3>
+
+🇬🇧 London
+
+</h3>
+
+<h1 id="londonTime">
+
+14:45
+
+</h1>
+
+</div>
+
+</div>
+
+</section>
+
+<!--=========================
+AIRPORT ANNOUNCEMENT
+==========================-->
+
+<section class="announcement">
+
+<div class="announcementBox">
+
+<h2>
+
+📢 Airport Announcement
+
+</h2>
+
+<p id="announcement">
+
+Welcome to AeroSync International Airport.
+
+</p>
+
+</div>
+
+</section>
+<!--=========================
+WEATHER
+==========================-->
+
+<section class="weather">
+
+<h2>
+
+Current Airport Weather
+
+</h2>
+
+<div class="weatherCard">
+
+<div>
+
+<h1>
+
+☀️ 31°C
+
+</h1>
+
+<p>
+
+Chennai International Airport
+
+</p>
+
+</div>
+
+<div>
+
+<h3>
+
+Visibility
+
+</h3>
+
+<p>
+
+10 km
+
+</p>
+
+</div>
+
+<div>
+
+<h3>
+
+Wind
+
+</h3>
+
+<p>
+
+12 km/h
+
+</p>
+
+</div>
+
+<div>
+
+<h3>
+
+Humidity
+
+</h3>
+
+<p>
+
+72%
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!--=========================
+TRAVEL TIPS
+==========================-->
+
+<section class="tips">
+
+<h2>
+
+Travel Information
+
+</h2>
+
+<div class="tipsGrid">
+
+<div class="tipCard">
+
+🛂
+
+<h3>
+
+Passport
+
+</h3>
+
+<p>
+
+Keep your passport ready before reaching security.
+
+</p>
+
+</div>
+
+<div class="tipCard">
+
+🧳
+
+<h3>
+
+Baggage
+
+</h3>
+
+<p>
+
+Check baggage weight before check-in.
+
+</p>
+
+</div>
+
+<div class="tipCard">
+
+⏰
+
+<h3>
+
+Arrival
+
+</h3>
+
+<p>
+
+Reach the airport at least 2 hours before departure.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!--=========================
+FOOTER
+==========================-->
+
+<footer>
+
+<h2>
+
+✈ AeroSync International Airport
+
+</h2>
+
+<p>
+
+Safe Travels • Real-Time Airport Information System
+
+</p>
+
+<div class="footerIcons">
+
+<i class="fa-solid fa-plane"></i>
+
+<i class="fa-solid fa-earth-asia"></i>
+
+<i class="fa-solid fa-location-dot"></i>
+
+<i class="fa-solid fa-clock"></i>
+
+</div>
+
+<p>
+
+© 2026 AeroSync Airport Display
+
+</p>
+
+</footer>
+
+<button id="topBtn">
+
+⬆
+
+</button>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

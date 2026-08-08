@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<students>
+
+    <student>
+
+        <rollnumber>192521069</rollnumber>
+
+        <name>S.Pragathi Bai</name>
+
+        <department>Information Technology</department>
+
+        <year>Second Year</year>
+
+        <email>pragathisham1704@gmail.com</email>
+
+        <mobilenumber>9003152417</mobilenumber>
+
+    </student>
+
+    <student>
+
+        <rollnumber>192521064</rollnumber>
+
+        <name>Keerthikaa</name>
+
+        <department>Computer Science Engineering</department>
+
+        <year>Second Year</year>
+
+        <email>keerthikaanavee@gmail.com</email>
+
+        <mobilenumber>9123456780</mobilenumber>
+
+    </student>
+
+    <student>
+
+        <rollnumber>192521073</rollnumber>
+
+        <name>Maya Neelai</name>
+
+        <department>Artificial Intelligence and Data Science</department>
+
+        <year>Second Year</year>
+
+        <email>maya@gmail.com</email>
+
+        <mobilenumber>9345678901</mobilenumber>
+
+    </student>
+
+    <student>
+
+        <rollnumber>192521076</rollnumber>
+
+        <name>Swetha</name>
+
+        <department>Electronics and Communication Engineering</department>
+
+        <year>Second Year</year>
+
+        <email>sweswe@gmail.com</email>
+
+        <mobilenumber>9567890123</mobilenumber>
+
+    </student>
+
+    <student>
+
+        <rollnumber>192521056</rollnumber>
+
+        <name>Keshika</name>
+
+        <department>Electronics and Communication Engineering</department>
+
+        <year>Second Year</year>
+
+        <email>keshi@gmail.com</email>
+
+        <mobilenumber>9567890123</mobilenumber>
+
+    </student>
+    
+    <student>
+
+        <rollnumber>192521072</rollnumber>
+
+        <name>Lavanya</name>
+
+        <department>Mechanical Engineering</department>
+
+        <year>Second Year</year>
+
+        <email>lavi@gmail.com</email>
+
+        <mobilenumber>9789012345</mobilenumber>
+
+    </student>
+
+</students>

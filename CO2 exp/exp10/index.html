@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+CodeFix Studio
+
+</title>
+
+<link rel="stylesheet"
+href="style.css">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!--========================
+LOADER
+=========================-->
+
+<div id="loader">
+
+<div class="loaderBox">
+
+<i class="fa-solid fa-bug"></i>
+
+<h1>
+
+CodeFix Studio
+
+</h1>
+
+<p>
+
+Loading Developer Workspace...
+
+</p>
+
+</div>
+
+</div>
+
+<!--========================
+HEADER
+=========================-->
+
+<header>
+
+<div class="logo">
+
+🐞 CodeFix Studio
+
+</div>
+
+<nav>
+
+<a href="#dashboard">
+
+Dashboard
+
+</a>
+
+<a href="#editor">
+
+Editor
+
+</a>
+
+<a href="#console">
+
+Console
+
+</a>
+
+<a href="#report">
+
+Report
+
+</a>
+
+</nav>
+
+<button id="theme">
+
+🌙
+
+</button>
+
+</header>
+
+<!--========================
+HOME
+=========================-->
+
+<section id="dashboard"
+class="hero">
+
+<h3>
+
+INTERACTIVE DEBUGGING LAB
+
+</h3>
+
+<h1>
+
+Debug Like A Professional
+
+</h1>
+
+<p>
+
+Practice fixing HTML, CSS and JavaScript errors using a simulated developer environment.
+
+</p>
+
+<button id="startDebug">
+
+🚀 Start Debugging
+
+</button>
+
+</section>
+
+<!--========================
+BUG COUNTERS
+=========================-->
+
+<section class="stats">
+
+<div class="statCard">
+
+<h2 id="bugs">
+
+5
+
+</h2>
+
+<p>
+
+Bugs Found
+
+</p>
+
+</div>
+
+<div class="statCard">
+
+<h2 id="fixed">
+
+0
+
+</h2>
+
+<p>
+
+Bugs Fixed
+
+</p>
+
+</div>
+
+<div class="statCard">
+
+<h2 id="score">
+
+0%
+
+</h2>
+
+<p>
+
+Debug Score
+
+</p>
+
+</div>
+
+</section>
+
+<!--========================
+DEBUG PANEL
+=========================-->
+
+<section id="editor">
+
+<h2>
+
+Developer Workspace
+
+</h2>
+
+<div class="debugGrid">
+<!--========================
+HTML PANEL
+=========================-->
+
+<div class="panel">
+
+<div class="panelHeader">
+
+<i class="fa-brands fa-html5"></i>
+
+HTML
+
+</div>
+
+<pre id="htmlCode">
+
+&lt;button&gt;
+
+Click Me
+
+&lt;/button&gt;
+
+</pre>
+
+<button class="bugButton"
+
+onclick="htmlBug()">
+
+🐞 HTML Bug
+
+</button>
+
+<button class="fixButton"
+
+onclick="fixHTML()">
+
+🔧 Fix
+
+</button>
+
+</div>
+
+<!--========================
+CSS PANEL
+=========================-->
+
+<div class="panel">
+
+<div class="panelHeader">
+
+<i class="fa-brands fa-css3-alt"></i>
+
+CSS
+
+</div>
+
+<pre id="cssCode">
+
+button{
+
+background:green;
+
+color:white;
+
+}
+
+</pre>
+
+<button class="bugButton"
+
+onclick="cssBug()">
+
+🐞 CSS Bug
+
+</button>
+
+<button class="fixButton"
+
+onclick="fixCSS()">
+
+🔧 Fix
+
+</button>
+
+</div>
+
+<!--========================
+JAVASCRIPT PANEL
+=========================-->
+
+<div class="panel">
+
+<div class="panelHeader">
+
+<i class="fa-brands fa-js"></i>
+
+JavaScript
+
+</div>
+
+<pre id="jsCode">
+
+console.log("App Running");
+
+</pre>
+
+<button class="bugButton"
+
+onclick="jsBug()">
+
+🐞 JavaScript Bug
+
+</button>
+
+<button class="fixButton"
+
+onclick="fixJS()">
+
+🔧 Fix
+
+</button>
+
+</div>
+
+<!--========================
+LIVE PREVIEW
+=========================-->
+
+<div class="panel preview">
+
+<div class="panelHeader">
+
+<i class="fa-solid fa-display"></i>
+
+Live Preview
+
+</div>
+
+<div id="previewBox">
+
+<button id="demoButton">
+
+Submit
+
+</button>
+
+<p id="previewText">
+
+Application Running Successfully ✅
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<!--========================
+DEVELOPER CONSOLE
+=========================-->
+
+<section id="console">
+
+<h2>
+
+Developer Console
+
+</h2>
+
+<div class="consoleWindow">
+
+<div class="consoleHeader">
+
+<span class="red"></span>
+
+<span class="yellow"></span>
+
+<span class="green"></span>
+
+Developer Console
+
+</div>
+
+<div id="consoleOutput">
+
+<p>
+
+✔ Application Started Successfully
+
+</p>
+
+<p>
+
+✔ HTML Loaded
+
+</p>
+
+<p>
+
+✔ CSS Loaded
+
+</p>
+
+<p>
+
+✔ JavaScript Loaded
+
+</p>
+
+</div>
+
+<button id="clearConsole">
+
+🗑 Clear Console
+
+</button>
+
+</div>
+
+</section>
+
+<!--========================
+DEBUG TOOLS
+=========================-->
+
+<section class="tools">
+
+<h2>
+
+Debugging Tools
+
+</h2>
+
+<div class="toolGrid">
+
+<div class="toolCard">
+
+<i class="fa-solid fa-code"></i>
+
+<h3>
+
+console.log()
+
+</h3>
+
+<p>
+
+Print variables and messages.
+
+</p>
+
+</div>
+
+<div class="toolCard">
+
+<i class="fa-solid fa-pause"></i>
+
+<h3>
+
+debugger
+
+</h3>
+
+<p>
+
+Pause JavaScript execution.
+
+</p>
+
+</div>
+
+<div class="toolCard">
+
+<i class="fa-solid fa-bug"></i>
+
+<h3>
+
+try...catch
+
+</h3>
+
+<p>
+
+Catch runtime errors safely.
+
+</p>
+
+</div>
+
+<div class="toolCard">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<h3>
+
+Inspect Element
+
+</h3>
+
+<p>
+
+Inspect HTML and CSS.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!--========================
+DEBUG REPORT
+=========================-->
+
+<section id="report">
+
+<h2>
+
+Debug Report
+
+</h2>
+
+<table>
+
+<tr>
+
+<th>
+
+Category
+
+</th>
+
+<th>
+
+Status
+
+</th>
+
+</tr>
+
+<tr>
+
+<td>
+
+HTML
+
+</td>
+
+<td id="htmlStatus">
+
+Waiting...
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+CSS
+
+</td>
+
+<td id="cssStatus">
+
+Waiting...
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+JavaScript
+
+</td>
+
+<td id="jsStatus">
+
+Waiting...
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+Overall
+
+</td>
+
+<td id="overallStatus">
+
+Pending
+
+</td>
+
+</tr>
+
+</table>
+
+</section>
+
+<footer>
+
+<h2>
+
+🐞 CodeFix Studio
+
+</h2>
+
+<p>
+
+Practice • Debug • Learn
+
+</p>
+
+<p>
+
+© 2026 Interactive Debugging Lab
+
+</p>
+
+</footer>
+
+<button id="topBtn">
+
+⬆
+
+</button>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

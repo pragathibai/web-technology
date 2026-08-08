@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>S Pragathi Bai | Student ID</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Fraunces:ital,wght@0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="stage">
+
+    <!-- Lanyard clip + strap -->
+    <div class="lanyard">
+      <div class="strap"></div>
+      <div class="clip"></div>
+    </div>
+
+    <!-- The ID card itself -->
+    <main class="badge" id="badge">
+
+      <div class="punch-hole"></div>
+
+      <header class="badge-head">
+        <span class="badge-eyebrow">DEPARTMENT OF INFORMATION TECHNOLOGY</span>
+        <h1 class="badge-title">Student ID</h1>
+      </header>
+
+      <section class="badge-body">
+        <div class="photo-wrap">
+          <img src="photo.jpeg" alt="S Pragathi Bai" class="photo" />
+        </div>
+
+        <div class="identity">
+          <h2 class="name">S Pragathi Bai</h2>
+          <p class="course">B.Tech &mdash; Information Technology</p>
+          <p class="year-tag">2nd Year</p>
+
+          <dl class="details">
+            <div class="detail-row">
+              <dt>Roll No.</dt>
+              <dd>192521069</dd>
+            </div>
+            <div class="detail-row">
+              <dt>Email</dt>
+              <dd class="email">pragathuisham1704@gmail.com</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <div class="divider" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <section class="badge-footer">
+        <div class="interests" id="interestTicker">
+          <span>Coding</span>
+          <span>&bull;</span>
+          <span>Design</span>
+          <span>&bull;</span>
+          <span>Music</span>
+          <span>&bull;</span>
+          <span>Reading</span>
+          <span>&bull;</span>
+        </div>
+
+        <button id="flipBtn" class="flip-btn" aria-label="Flip badge to see the back">
+          Flip for more &rarr;
+        </button>
+      </section>
+
+      <div class="barcode" aria-hidden="true">
+        <div class="bars"></div>
+        <span class="barcode-num">192521069</span>
+      </div>
+    </main>
+
+    <!-- Back of the badge, revealed on flip -->
+    <section class="badge-back" id="badgeBack">
+      <h3>About Me</h3>
+      <p>
+        I'm a 2nd-year IT student who likes turning ideas into working
+        code. Outside of class, you'll usually find me sketching layouts,
+        listening to something new, or buried in a book.
+      </p>
+
+      <h3>Skills</h3>
+      <div class="skill">
+        <span>HTML &amp; CSS</span>
+        <div class="bar"><div class="fill" style="width: 88%"></div></div>
+      </div>
+      <div class="skill">
+        <span>JavaScript</span>
+        <div class="bar"><div class="fill" style="width: 65%"></div></div>
+      </div>
+      <div class="skill">
+        <span>Python</span>
+        <div class="bar"><div class="fill" style="width: 55%"></div></div>
+      </div>
+
+      <button id="likeBtn" class="like-btn">
+        Give this profile a star &#9733; <span id="likeCount">0</span>
+      </button>
+
+      <button id="backBtn" class="flip-btn ghost">&larr; Back to ID</button>
+    </section>
+
+  </div>
+
+  <footer class="page-footer">
+    Web Technology Lab &mdash; Experiment 1: Responsive Student Profile
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

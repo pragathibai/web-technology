@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>CineMagic Movie Booking</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
+}
+
+body{
+
+background:linear-gradient(135deg,#0f0f0f,#2d1b4e,#121212);
+min-height:100vh;
+padding:40px;
+color:white;
+
+}
+
+.container{
+
+width:900px;
+margin:auto;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(10px);
+border-radius:20px;
+overflow:hidden;
+box-shadow:0px 0px 30px rgba(255,215,0,.25);
+
+}
+
+.header{
+
+background:linear-gradient(90deg,#ffb703,#fb8500);
+padding:25px;
+text-align:center;
+color:black;
+
+}
+
+.header h1{
+
+font-size:38px;
+margin-bottom:8px;
+
+}
+
+.header p{
+
+font-size:18px;
+font-weight:bold;
+
+}
+
+.section{
+
+padding:30px;
+
+}
+
+.section h2{
+
+color:#FFD700;
+margin-bottom:20px;
+text-align:center;
+font-size:28px;
+
+}
+
+table{
+
+width:100%;
+
+}
+
+td{
+
+padding:12px;
+
+}
+
+label{
+
+font-weight:bold;
+font-size:16px;
+
+}
+
+input,
+select{
+
+width:100%;
+padding:12px;
+margin-top:5px;
+border:none;
+border-radius:8px;
+font-size:15px;
+transition:.3s;
+
+}
+
+input:focus,
+select:focus{
+
+outline:none;
+box-shadow:0 0 15px gold;
+transform:scale(1.02);
+
+}
+
+.radio input,
+.check input{
+
+width:auto;
+margin-right:6px;
+
+}
+
+.radio label,
+.check label{
+
+margin-right:20px;
+
+}
+
+button{
+
+margin-top:20px;
+width:100%;
+padding:15px;
+border:none;
+border-radius:10px;
+background:#FFD700;
+color:black;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+transition:.4s;
+
+}
+
+button:hover{
+
+background:#dc143c;
+color:white;
+transform:translateY(-5px);
+
+}
+
+.card{
+
+border:2px solid rgba(255,255,255,.15);
+padding:25px;
+border-radius:18px;
+margin-bottom:35px;
+transition:.4s;
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+box-shadow:0 0 25px gold;
+
+}
+
+hr{
+
+border:1px solid rgba(255,255,255,.2);
+margin:35px 0;
+
+}
+
+footer{
+
+text-align:center;
+padding:20px;
+background:#000;
+color:#FFD700;
+font-size:18px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>🍿 CineMagic 🎬</h1>
+
+<p>Lights • Camera • Action ⭐ Book Your Favourite Movie</p>
+
+</div>
+
+<div class="section">
+
+<div class="card">
+
+<h2>🎬 Search Movies (GET Method)</h2>
+
+<form method="get">
+
+<table>
+
+<tr>
+
+<td><label>🎥 Movie Name</label></td>
+
+<td>
+
+<input type="text" name="movie" placeholder="Enter Movie Name" required>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td><label>🌐 Language</label></td>
+
+<td>
+
+<select name="language">
+
+<option>Tamil</option>
+
+<option>English</option>
+
+<option>Hindi</option>
+
+<option>Malayalam</option>
+
+<option>Telugu</option>
+
+</select>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td><label>🎭 Genre</label></td>
+
+<td>
+
+<select name="genre">
+
+<option>Action</option>
+
+<option>Comedy</option>
+
+<option>Thriller</option>
+
+<option>Romance</option>
+
+<option>Horror</option>
+
+</select>
+
+</td>
+
+</tr>
+<tr>
+
+<td><label>📍 Theatre</label></td>
+
+<td>
+
+<select name="theatre">
+
+<option>PVR Cinemas</option>
+
+<option>INOX</option>
+
+<option>AGS Cinemas</option>
+
+<option>Rohini Silver Screens</option>
+
+<option>SPI Palazzo</option>
+
+</select>
+
+</td>
+
+</tr>
+
+</table>
+
+<button type="submit">🔍 Search Movie</button>
+
+</form>
+
+</div>
+
+<hr>
+
+<div class="card">
+
+<h2>🎟️ Book Your Tickets (POST Method)</h2>
+
+<form method="post">
+
+<table>
+
+<tr>
+
+<td><label>👤 Customer Name</label></td>
+
+<td>
+
+<input type="text" name="customer" placeholder="Enter Your Name" required>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td><label>📱 Mobile Number</label></td>
+
+<td>
+
+<input type="tel" name="mobile" placeholder="Enter Mobile Number" required>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td><label>🎬 Movie</label></td>
+
+<td>
+
+<select name="movie">
+
+<option>Leo</option>
+
+<option>Vikram</option>
+
+<option>Jailer</option>
+
+<option>Avengers: Endgame</option>
+
+<option>Interstellar</option>
+
+<option>Kalki 2898 AD</option>
+
+</select>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td><label>🎫 Number of Tickets</label></td>
+
+<td>
+
+<input type="number" min="1" max="10" placeholder="Enter Number of Tickets" required>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td><label>💺 Seat Type</label></td>
+
+<td>
+
+<select>
+
+<option>Silver 🥈</option>
+
+<option>Gold 🥇</option>
+
+<option>Platinum 💎</option>
+
+<option>Recliner 👑</option>
+
+</select>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td><label>💳 Payment Mode</label></td>
+
+<td>
+
+<div class="radio">
+
+<label><input type="radio" name="pay"> UPI</label>
+
+<label><input type="radio" name="pay"> Card</label>
+
+<label><input type="radio" name="pay"> Cash</label>
+
+</div>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td><label>🍿 Snacks</label></td>
+
+<td>
+
+<div class="check">
+
+<label><input type="checkbox"> 🍿 Popcorn</label>
+
+<label><input type="checkbox"> 🥤 Coke</label>
+
+<label><input type="checkbox"> 🌮 Nachos</label>
+
+<label><input type="checkbox"> 🍫 Chocolate</label>
+
+</div>
+
+</td>
+
+</tr>
+
+</table>
+
+<button type="submit">🎟️ Book Tickets</button>
+
+</form>
+
+</div>
+<footer>
+
+🍿 Thank You for Choosing <b>CineMagic</b> 🎬 <br><br>
+
+⭐ Enjoy Your Movie Experience ⭐ <br>
+
+🎥 Lights • Camera • Action • Entertainment 🎭
+
+</footer>
+
+</div>
+
+<script>
+
+document.querySelectorAll("form")[1].onsubmit=function(){
+
+alert("🎉 Booking Confirmed!\n\n🍿 Enjoy your Movie!\n🎟️ Your ticket has been booked successfully.");
+
+this.reset();
+
+return false;
+
+};
+
+</script>
+
+</body>
+
+</html>

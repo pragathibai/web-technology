@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Result Analysis System</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- Loading Screen -->
+
+<div id="loader">
+
+<div class="loader-box">
+
+<i class="fa-solid fa-graduation-cap"></i>
+
+<h2>Student Result Analysis System</h2>
+
+<p>Loading Dashboard...</p>
+
+<div class="loader-bar">
+
+<div class="loader-fill"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Scroll Progress -->
+
+<div id="progressBar"></div>
+
+<!-- Header -->
+
+<header>
+
+<nav>
+
+<div class="logo">
+
+<i class="fa-solid fa-chart-column"></i>
+
+<h2>Result Analysis System</h2>
+
+</div>
+
+<ul class="nav-links">
+
+<li><a href="#home">Home</a></li>
+
+<li><a href="#student">Student</a></li>
+
+<li><a href="#subjects">Subjects</a></li>
+
+<li><a href="#analysis">Analysis</a></li>
+
+<li><a href="#result">Result</a></li>
+
+<li><a href="#contact">Contact</a></li>
+
+</ul>
+
+<div class="rightNav">
+
+<button id="themeBtn">
+
+🌙
+
+</button>
+
+<div class="menu">
+
+☰
+
+</div>
+
+</div>
+
+</nav>
+
+</header>
+
+<!-- Hero Section -->
+
+<section id="home" class="hero">
+
+<div class="hero-content">
+
+<h4>
+
+WELCOME TO
+
+</h4>
+
+<h1>
+
+Student Result Analysis System
+
+</h1>
+
+<p>
+
+Analyze academic performance instantly using advanced calculations,
+dynamic reports and interactive visualizations.
+
+</p>
+
+<div class="hero-buttons">
+
+<button id="startBtn">
+
+<i class="fa-solid fa-play"></i>
+
+Start Analysis
+
+</button>
+
+<button id="resetBtn">
+
+<i class="fa-solid fa-rotate"></i>
+
+Reset
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- Dashboard -->
+
+<section class="dashboard">
+
+<div class="card">
+
+<h3>Total Subjects</h3>
+
+<h1 id="totalSubjects">
+
+0
+
+</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Average</h3>
+
+<h1 id="average">
+
+0
+
+</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Percentage</h3>
+
+<h1 id="percentage">
+
+0%
+
+</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Grade</h3>
+
+<h1 id="grade">
+
+-
+
+</h1>
+
+</div>
+
+</section>
+
+<!-- Student Details -->
+
+<section id="student">
+
+<h2 class="title">
+
+Student Information
+
+</h2>
+
+<div class="student-form">
+
+<div class="input-group">
+
+<label>
+
+Student Name
+
+</label>
+
+<input type="text" id="studentName">
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Register Number
+
+</label>
+
+<input type="text" id="registerNo">
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Department
+
+</label>
+
+<select id="department">
+
+<option>CSE</option>
+
+<option>AI & DS</option>
+
+<option>IT</option>
+
+<option>ECE</option>
+
+<option>EEE</option>
+
+<option>MECH</option>
+
+</select>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Semester
+
+</label>
+
+<select id="semester">
+
+<option>1</option>
+
+<option>2</option>
+
+<option>3</option>
+
+<option>4</option>
+
+<option>5</option>
+
+<option>6</option>
+
+<option>7</option>
+
+<option>8</option>
+
+</select>
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Academic Year
+
+</label>
+
+<input type="text" placeholder="2026-2027">
+
+</div>
+
+</div>
+
+</section>
+<!--================ SUBJECT ENTRY ================-->
+
+<section id="subjects">
+
+<h2 class="title">
+
+Subject Entry
+
+</h2>
+
+<p class="subtitle">
+
+Enter each subject along with internal, external marks and credits.
+You can dynamically add or remove subjects.
+
+</p>
+
+<div class="tableContainer">
+
+<table id="subjectTable">
+
+<thead>
+
+<tr>
+
+<th>Subject</th>
+
+<th>Internal</th>
+
+<th>External</th>
+
+<th>Credits</th>
+
+<th>Total</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="tableBody">
+
+<tr>
+
+<td>
+
+<input type="text" placeholder="Subject Name">
+
+</td>
+
+<td>
+
+<input type="number" class="internal" min="0" max="40">
+
+</td>
+
+<td>
+
+<input type="number" class="external" min="0" max="60">
+
+</td>
+
+<td>
+
+<input type="number" class="credits" min="1" max="5">
+
+</td>
+
+<td>
+
+<input type="text" class="total" readonly>
+
+</td>
+
+<td>
+
+<button class="deleteRow">
+
+🗑
+
+</button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="tableButtons">
+
+<button id="addRow">
+
+<i class="fa-solid fa-plus"></i>
+
+Add Subject
+
+</button>
+
+<button id="calculate">
+
+<i class="fa-solid fa-calculator"></i>
+
+Calculate Result
+
+</button>
+
+<button id="clearAll">
+
+<i class="fa-solid fa-trash"></i>
+
+Clear All
+
+</button>
+
+</div>
+
+</section>
+
+<!--================ RESULT ANALYSIS ================-->
+
+<section id="analysis">
+
+<h2 class="title">
+
+Performance Analysis
+
+</h2>
+
+<div class="analysisCards">
+
+<div class="analysisCard">
+
+<h3>
+
+📊 Total Marks
+
+</h3>
+
+<h1 id="totalMarks">
+
+0
+
+</h1>
+
+</div>
+
+<div class="analysisCard">
+
+<h3>
+
+📈 Average
+
+</h3>
+
+<h1 id="avgMarks">
+
+0
+
+</h1>
+
+</div>
+
+<div class="analysisCard">
+
+<h3>
+
+🎯 Percentage
+
+</h3>
+
+<h1 id="percent">
+
+0%
+
+</h1>
+
+</div>
+
+<div class="analysisCard">
+
+<h3>
+
+🏆 Grade
+
+</h3>
+
+<h1 id="overallGrade">
+
+-
+
+</h1>
+
+</div>
+
+<div class="analysisCard">
+
+<h3>
+
+⭐ Highest Mark
+
+</h3>
+
+<h1 id="highest">
+
+0
+
+</h1>
+
+</div>
+
+<div class="analysisCard">
+
+<h3>
+
+📉 Lowest Mark
+
+</h3>
+
+<h1 id="lowest">
+
+0
+
+</h1>
+
+</div>
+
+</div>
+
+<div class="progressSection">
+
+<h3>
+
+Overall Performance
+
+</h3>
+
+<div class="progressBar">
+
+<div id="progressFill">
+
+0%
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!--================ RESULT TABLE ================-->
+
+<section id="result">
+
+<h2 class="title">
+
+Result Summary
+
+</h2>
+
+<table class="resultTable">
+
+<thead>
+
+<tr>
+
+<th>Subject</th>
+
+<th>Total</th>
+
+<th>Grade</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody id="resultBody">
+
+</tbody>
+
+</table>
+<!--================ ACHIEVEMENTS ================-->
+
+<section id="achievements">
+
+<h2 class="title">
+
+Achievements & Performance
+
+</h2>
+
+<div class="achievementGrid">
+
+<div class="achievementCard">
+
+<i class="fa-solid fa-medal"></i>
+
+<h3>Achievement</h3>
+
+<p id="achievementText">
+
+Waiting for analysis...
+
+</p>
+
+</div>
+
+<div class="achievementCard">
+
+<i class="fa-solid fa-award"></i>
+
+<h3>Overall Result</h3>
+
+<p id="resultStatus">
+
+Not Calculated
+
+</p>
+
+</div>
+
+<div class="achievementCard">
+
+<i class="fa-solid fa-ranking-star"></i>
+
+<h3>Rank Prediction</h3>
+
+<p id="rankPrediction">
+
+Pending
+
+</p>
+
+</div>
+
+<div class="achievementCard">
+
+<i class="fa-solid fa-graduation-cap"></i>
+
+<h3>CGPA (Approx.)</h3>
+
+<h1 id="cgpa">
+
+0.0
+
+</h1>
+
+</div>
+
+</div>
+
+</section>
+
+<!--================ GRADE LEGEND ================-->
+
+<section id="gradeSection">
+
+<h2 class="title">
+
+Grade Reference
+
+</h2>
+
+<div class="gradeGrid">
+
+<div class="gradeCard">O Grade (91–100)</div>
+
+<div class="gradeCard">A+ Grade (81–90)</div>
+
+<div class="gradeCard">A Grade (71–80)</div>
+
+<div class="gradeCard">B+ Grade (61–70)</div>
+
+<div class="gradeCard">B Grade (50–60)</div>
+
+<div class="gradeCard">RA (Below 50)</div>
+
+</div>
+
+</section>
+
+<!--================ CONTACT ================-->
+
+<section id="contact">
+
+<h2 class="title">
+
+Feedback
+
+</h2>
+
+<div class="contactBox">
+
+<div class="input-group">
+
+<label>Your Name</label>
+
+<input type="text" placeholder="Enter your name">
+
+</div>
+
+<div class="input-group">
+
+<label>Email</label>
+
+<input type="email" placeholder="Enter your email">
+
+</div>
+
+<div class="input-group">
+
+<label>Suggestions</label>
+
+<textarea placeholder="Write your feedback..."></textarea>
+
+</div>
+
+<button id="sendBtn">
+
+<i class="fa-solid fa-paper-plane"></i>
+
+Send Feedback
+
+</button>
+
+</div>
+
+</section>
+
+<!--================ FOOTER ================-->
+
+<footer>
+
+<div class="footerContent">
+
+<h2>
+
+🎓 Student Result Analysis System
+
+</h2>
+
+<p>
+
+A modern Web Technology project developed using
+HTML, CSS and JavaScript for academic result analysis.
+
+</p>
+
+<div class="footerIcons">
+
+<i class="fab fa-html5"></i>
+
+<i class="fab fa-css3-alt"></i>
+
+<i class="fab fa-js"></i>
+
+<i class="fab fa-github"></i>
+
+</div>
+
+<p>
+
+© 2026 All Rights Reserved
+
+</p>
+
+</div>
+
+</footer>
+
+<!--================ BACK TO TOP ================-->
+
+<button id="topBtn">
+
+⬆
+
+</button>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

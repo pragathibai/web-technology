@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Virtual Pet To-Do List</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🐶 Buddy's To-Do List</h1>
+
+<button id="themeBtn">
+🌙
+</button>
+
+</header>
+
+<div class="container">
+
+<div class="left">
+
+<div class="petCard">
+
+<div id="pet">
+🐶
+</div>
+
+<h2 id="petMood">
+Happy 😊
+</h2>
+
+<div class="bar">
+
+<div id="happyBar"></div>
+
+</div>
+
+<p>
+❤️ Happiness
+</p>
+
+<div class="bar">
+
+<div id="xpBar"></div>
+
+</div>
+
+<p>
+⭐ XP
+</p>
+
+<h3>
+
+Level
+
+<span id="level">
+
+1
+
+</span>
+
+</h3>
+
+</div>
+
+</div>
+
+<div class="right">
+
+<form id="taskForm">
+
+<input
+type="text"
+id="taskInput"
+placeholder="Enter Task"
+required>
+
+<select id="difficulty">
+
+<option>Easy</option>
+
+<option>Medium</option>
+
+<option>Hard</option>
+
+</select>
+
+<button>
+
+Add Task
+
+</button>
+
+</form>
+
+<div class="search">
+
+<input
+type="text"
+id="search"
+placeholder="Search Task...">
+
+</div>
+
+<div id="taskList">
+
+</div>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

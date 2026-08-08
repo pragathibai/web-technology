@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Hogwarts Quiz Challenge</title>
+
+<link rel="stylesheet"
+href="style.css">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- =====================
+Loading Screen
+===================== -->
+
+<div id="loader">
+
+<div class="loaderBox">
+
+<h1>⚡</h1>
+
+<h2>Hogwarts Academy</h2>
+
+<p>
+
+Preparing Your Magical Examination...
+
+</p>
+
+<div class="magicBar">
+
+<div class="magicFill"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =====================
+Background
+===================== -->
+
+<div class="stars"></div>
+
+<div class="moon"></div>
+
+<div class="fog"></div>
+
+<!-- =====================
+Navbar
+===================== -->
+
+<header>
+
+<nav>
+
+<div class="logo">
+
+🦉 Hogwarts Quiz
+
+</div>
+
+<ul>
+
+<li>
+
+<a href="#home">
+
+Home
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#houses">
+
+Houses
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#quiz">
+
+Quiz
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#leaderboard">
+
+Leaderboard
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#about">
+
+About
+
+</a>
+
+</li>
+
+</ul>
+
+<button id="theme">
+
+🌙
+
+</button>
+
+</nav>
+
+</header>
+
+<!-- =====================
+Hero
+===================== -->
+
+<section id="home"
+class="hero">
+
+<div class="overlay"></div>
+
+<div class="heroContent">
+
+<h3>
+
+WELCOME TO
+
+</h3>
+
+<h1>
+
+HOGWARTS
+
+ACADEMY
+
+</h1>
+
+<p>
+
+Prove your magical intelligence.
+
+Earn House Points.
+
+Become the Greatest Wizard.
+
+</p>
+
+<button id="startQuiz">
+
+⚡ Begin Journey
+
+</button>
+
+</div>
+
+</section>
+
+<!-- =====================
+House Selection
+===================== -->
+
+<section id="houses">
+
+<h2>
+
+Choose Your House
+
+</h2>
+
+<p>
+
+Every house possesses unique strengths.
+Choose wisely before beginning your magical examination.
+
+</p>
+
+<div class="houseGrid">
+
+<div class="house gryffindor">
+
+<h1>
+
+🦁
+
+</h1>
+
+<h2>
+
+Gryffindor
+
+</h2>
+
+<p>
+
+Bravery • Courage • Leadership
+
+</p>
+
+<button>
+
+Select House
+
+</button>
+
+</div>
+
+<div class="house slytherin">
+
+<h1>
+
+🐍
+
+</h1>
+
+<h2>
+
+Slytherin
+
+</h2>
+
+<p>
+
+Ambition • Resourcefulness
+
+</p>
+
+<button>
+
+Select House
+
+</button>
+
+</div>
+
+<div class="house ravenclaw">
+
+<h1>
+
+🦅
+
+</h1>
+
+<h2>
+
+Ravenclaw
+
+</h2>
+
+<p>
+
+Knowledge • Creativity
+
+</p>
+
+<button>
+
+Select House
+
+</button>
+
+</div>
+
+<div class="house hufflepuff">
+
+<h1>
+
+🦡
+
+</h1>
+
+<h2>
+
+Hufflepuff
+
+</h2>
+
+<p>
+
+Kindness • Loyalty
+
+</p>
+
+<button>
+
+Select House
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+<!--========================
+ WIZARD PROFILE
+=========================-->
+
+<section class="wizardProfile">
+
+<div class="profileCard">
+
+<div class="wizardAvatar">
+
+🧙
+
+</div>
+
+<div class="wizardInfo">
+
+<h2>
+
+Student Wizard
+
+</h2>
+
+<p>
+
+House :
+
+<span id="selectedHouse">
+
+Not Selected
+
+</span>
+
+</p>
+
+</div>
+
+</div>
+
+<div class="profileStats">
+
+<div class="stat">
+
+<h3>
+
+⭐ XP
+
+</h3>
+
+<h1 id="xp">
+
+0
+
+</h1>
+
+</div>
+
+<div class="stat">
+
+<h3>
+
+🏆 House Points
+
+</h3>
+
+<h1 id="points">
+
+0
+
+</h1>
+
+</div>
+
+<div class="stat">
+
+<h3>
+
+❤️ Lives
+
+</h3>
+
+<h1 id="lives">
+
+❤️❤️❤️
+
+</h1>
+
+</div>
+
+</div>
+
+</section>
+
+<!--========================
+ QUIZ DASHBOARD
+=========================-->
+
+<section id="quiz">
+
+<h2>
+
+Magical Examination
+
+</h2>
+
+<p>
+
+Complete every magical question to become a Hogwarts Champion.
+
+</p>
+
+<div class="quizDashboard">
+
+<div class="dashboardCard">
+
+<h3>
+
+Question
+
+</h3>
+
+<h1>
+
+<span id="currentQuestion">
+
+1
+
+</span>
+
+/10
+
+</h1>
+
+</div>
+
+<div class="dashboardCard">
+
+<h3>
+
+Time Left
+
+</h3>
+
+<h1 id="timer">
+
+30
+
+s
+
+</h1>
+
+</div>
+
+<div class="dashboardCard">
+
+<h3>
+
+Score
+
+</h3>
+
+<h1 id="score">
+
+0
+
+</h1>
+
+</div>
+
+<div class="dashboardCard">
+
+<h3>
+
+Accuracy
+
+</h3>
+
+<h1 id="accuracy">
+
+100%
+
+</h1>
+
+</div>
+
+</div>
+
+<!-- Progress -->
+
+<div class="progressContainer">
+
+<div id="progressFill">
+
+0%
+
+</div>
+
+</div>
+
+<!-- Question Card -->
+
+<div class="questionCard">
+
+<div class="questionTop">
+
+<div>
+
+Question
+
+<span id="questionNumber">
+
+1
+
+</span>
+
+</div>
+
+<div class="difficulty">
+
+⚡ Medium
+
+</div>
+
+</div>
+
+<h2 id="questionText">
+
+Which spell unlocks a locked door?
+
+</h2>
+
+<div class="optionGrid">
+
+<button class="option">
+
+Alohomora
+
+</button>
+
+<button class="option">
+
+Lumos
+
+</button>
+
+<button class="option">
+
+Accio
+
+</button>
+
+<button class="option">
+
+Expelliarmus
+
+</button>
+
+</div>
+
+<div class="quizButtons">
+
+<button id="nextBtn">
+
+Next Question →
+
+</button>
+
+<button id="skipBtn">
+
+Skip Question
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!--========================
+ MAGIC TIMER
+=========================-->
+
+<section class="timerSection">
+
+<div class="hourGlass">
+
+⏳
+
+</div>
+
+<h2>
+
+Time Remaining
+
+</h2>
+
+<h1 id="bigTimer">
+
+30
+
+</h1>
+
+<p>
+
+Complete the question before the magical sand runs out.
+
+</p>
+
+</section>
+<!--========================
+ ACHIEVEMENTS
+=========================-->
+
+<section id="achievements">
+
+<h2>
+
+Wizard Achievements
+
+</h2>
+
+<p>
+
+Unlock magical achievements by answering questions correctly.
+
+</p>
+
+<div class="achievementGrid">
+
+<div class="achievementCard">
+
+🏆
+
+<h3>
+
+Spell Master
+
+</h3>
+
+<p>
+
+Answer every spell correctly.
+
+</p>
+
+</div>
+
+<div class="achievementCard">
+
+🧪
+
+<h3>
+
+Potion Expert
+
+</h3>
+
+<p>
+
+Master magical potion questions.
+
+</p>
+
+</div>
+
+<div class="achievementCard">
+
+🐉
+
+<h3>
+
+Dragon Slayer
+
+</h3>
+
+<p>
+
+Score above 90%.
+
+</p>
+
+</div>
+
+<div class="achievementCard">
+
+📜
+
+<h3>
+
+Wizard Scholar
+
+</h3>
+
+<p>
+
+Complete every question without skipping.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!--========================
+ LEADERBOARD
+=========================-->
+
+<section id="leaderboard">
+
+<h2>
+
+Top Wizards
+
+</h2>
+
+<table class="leaderboardTable">
+
+<thead>
+
+<tr>
+
+<th>
+
+Rank
+
+</th>
+
+<th>
+
+Wizard
+
+</th>
+
+<th>
+
+House
+
+</th>
+
+<th>
+
+Points
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>🥇</td>
+
+<td>Hermione</td>
+
+<td>🦁 Gryffindor</td>
+
+<td>980</td>
+
+</tr>
+
+<tr>
+
+<td>🥈</td>
+
+<td>Harry</td>
+
+<td>🦁 Gryffindor</td>
+
+<td>950</td>
+
+</tr>
+
+<tr>
+
+<td>🥉</td>
+
+<td>Luna</td>
+
+<td>🦅 Ravenclaw</td>
+
+<td>920</td>
+
+</tr>
+
+<tr>
+
+<td>4</td>
+
+<td>Cedric</td>
+
+<td>🦡 Hufflepuff</td>
+
+<td>900</td>
+
+</tr>
+
+<tr>
+
+<td>5</td>
+
+<td>Draco</td>
+
+<td>🐍 Slytherin</td>
+
+<td>890</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+<!--========================
+ CERTIFICATE
+=========================-->
+
+<section class="certificateSection">
+
+<div class="certificate">
+
+<h1>
+
+🏅
+
+</h1>
+
+<h2>
+
+Certificate of Magical Excellence
+
+</h2>
+
+<p>
+
+This certifies that
+
+</p>
+
+<h3 id="certificateName">
+
+Student Wizard
+
+</h3>
+
+<p>
+
+has successfully completed the
+
+</p>
+
+<h2>
+
+Hogwarts Academy Quiz Challenge
+
+</h2>
+
+<button id="downloadCertificate">
+
+📄 Download Certificate
+
+</button>
+
+</div>
+
+</section>
+
+<!--========================
+ ABOUT
+=========================-->
+
+<section id="about">
+
+<h2>
+
+About Hogwarts Academy
+
+</h2>
+
+<p>
+
+Welcome to the Hogwarts Academy Quiz Challenge, a magical learning experience inspired by the enchanting world of wizardry. This interactive quiz portal combines fun, fantasy, and knowledge through spell-based questions, magical creatures, house competitions, and exciting achievements.
+
+</p>
+
+<p>
+
+Players choose their Hogwarts House, earn House Points, unlock magical badges, and climb the leaderboard while testing their knowledge. The project demonstrates HTML, CSS, JavaScript Arrays of Objects, Event Handling, Automatic Score Calculation, Responsive Design, and Interactive UI concepts in an engaging way.
+
+</p>
+
+</section>
+
+<!--========================
+ FOOTER
+=========================-->
+
+<footer>
+
+<h2>
+
+⚡ Hogwarts Academy Quiz
+
+</h2>
+
+<p>
+
+"The ones who love magic never stop learning."
+
+</p>
+
+<div class="footerIcons">
+
+<i class="fab fa-html5"></i>
+
+<i class="fab fa-css3-alt"></i>
+
+<i class="fab fa-js"></i>
+
+<i class="fas fa-hat-wizard"></i>
+
+</div>
+
+<p>
+
+© 2026 Hogwarts Quiz Challenge
+
+</p>
+
+</footer>
+
+<button id="topBtn">
+
+⬆
+
+</button>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Student Registration Portal</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:"Segoe UI",sans-serif;
+        }
+
+        body{
+
+            background:#edf2f7;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            min-height:100vh;
+            padding:40px;
+
+        }
+
+        .container{
+
+            width:800px;
+            background:white;
+            border-radius:18px;
+            overflow:hidden;
+            box-shadow:0px 12px 30px rgba(0,0,0,.18);
+
+        }
+
+        .header{
+
+            background:#0f4c81;
+            color:white;
+            text-align:center;
+            padding:25px;
+
+        }
+
+        .header h1{
+
+            font-size:30px;
+            margin-bottom:8px;
+
+        }
+
+        .header p{
+
+            font-size:15px;
+            opacity:.9;
+
+        }
+
+        form{
+
+            padding:30px;
+
+        }
+
+        table{
+
+            width:100%;
+
+        }
+
+        td{
+
+            padding:12px;
+            vertical-align:top;
+
+        }
+
+        label{
+
+            font-weight:600;
+            color:#333;
+
+        }
+
+        input,
+        select,
+        textarea{
+
+            width:100%;
+            padding:12px;
+            border:1px solid #cbd5e1;
+            border-radius:8px;
+            font-size:15px;
+            transition:.3s;
+
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus{
+
+            border-color:#2563eb;
+            outline:none;
+            box-shadow:0px 0px 8px rgba(37,99,235,.25);
+
+        }
+
+        textarea{
+
+            resize:none;
+
+        }
+
+        .radio input,
+        .check input{
+
+            width:auto;
+            margin-right:6px;
+
+        }
+
+        .radio label,
+        .check label{
+
+            margin-right:20px;
+            font-weight:500;
+
+        }
+
+        .btn{
+
+            text-align:center;
+            margin-top:25px;
+
+        }
+
+        .register{
+
+            background:#2563eb;
+            color:white;
+            border:none;
+            padding:13px 35px;
+            border-radius:8px;
+            cursor:pointer;
+            font-size:16px;
+            transition:.3s;
+
+        }
+
+        .register:hover{
+
+            background:#1d4ed8;
+            transform:translateY(-2px);
+
+        }
+
+        .reset{
+
+            background:#6b7280;
+            color:white;
+            border:none;
+            padding:13px 35px;
+            border-radius:8px;
+            cursor:pointer;
+            font-size:16px;
+            margin-left:10px;
+            transition:.3s;
+
+        }
+
+        .reset:hover{
+
+            background:#4b5563;
+
+        }
+
+        footer{
+
+            text-align:center;
+            padding:18px;
+            background:#f8fafc;
+            color:#666;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>🏫 Saveetha Engineering College</h1>
+
+<p>Student Registration Portal</p>
+
+</div>
+
+<form onsubmit="return registerStudent();">
+
+<table>
+
+<tr>
+
+<td><label>Student Name</label></td>
+
+<td>
+
+<input type="text" required placeholder="Enter your full name">
+
+</td>
+
+</tr>
+
+<tr>
+
+<td><label>Register Number</label></td>
+
+<td>
+
+<input type="text" required placeholder="Enter register number">
+
+</td>
+
+</tr>
+
+<tr>
+
+<td><label>Email Address</label></td>
+
+<td>
+
+<input type="email" required placeholder="Enter email">
+
+</td>
+
+</tr>
+
+<tr>
+
+<td><label>Phone Number</label></td>
+
+<td>
+
+<input type="tel" required placeholder="Enter mobile number">
+
+</td>
+
+</tr>
+<tr>
+
+<td><label>Date of Birth</label></td>
+
+<td>
+
+<input type="date" required>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td><label>Department</label></td>
+
+<td>
+
+<select required>
+
+<option value="">-- Select Department --</option>
+
+<option>Information Technology</option>
+
+<option>Computer Science Engineering</option>
+
+<option>Artificial Intelligence & Data Science</option>
+
+<option>Electronics & Communication Engineering</option>
+
+<option>Mechanical Engineering</option>
+
+</select>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td><label>Year of Study</label></td>
+
+<td>
+
+<select required>
+
+<option value="">-- Select Year --</option>
+
+<option>I Year</option>
+
+<option>II Year</option>
+
+<option>III Year</option>
+
+<option>IV Year</option>
+
+</select>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td><label>Gender</label></td>
+
+<td class="radio">
+
+<label><input type="radio" name="gender" required> Male</label>
+
+<label><input type="radio" name="gender"> Female</label>
+
+<label><input type="radio" name="gender"> Other</label>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td><label>Skills</label></td>
+
+<td class="check">
+
+<label><input type="checkbox"> HTML</label>
+
+<label><input type="checkbox"> CSS</label>
+
+<label><input type="checkbox"> JavaScript</label>
+
+<label><input type="checkbox"> Bootstrap</label>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td><label>Address</label></td>
+
+<td>
+
+<textarea rows="4" placeholder="Enter your address"></textarea>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td><label>Password</label></td>
+
+<td>
+
+<input type="password" required placeholder="Enter password">
+
+</td>
+
+</tr>
+
+<tr>
+
+<td><label>Confirm Password</label></td>
+
+<td>
+
+<input type="password" required placeholder="Confirm password">
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="btn">
+
+<input type="submit" value="Register" class="register">
+
+<input type="reset" value="Reset" class="reset">
+
+</div>
+
+</form>
+
+<footer>
+
+Designed by Pragathi Bai | Department of Information Technology
+
+</footer>
+<script>
+
+function registerStudent() {
+
+    alert("🎉 Registration Submitted Successfully!");
+
+    document.querySelector("form").reset();
+
+    return false;
+
+}
+
+</script>
+
+</body>
+
+</html>

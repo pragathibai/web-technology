@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Space Explorer 🚀 | Journey Beyond Earth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<!-- NAVIGATION -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="#home" class="logo">🚀 Space<span>Explorer</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="nav-link">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#gallery" class="nav-link">Planets</a></li>
+      <li><a href="#missions" class="nav-link">Missions</a></li>
+      <li><a href="#location" class="nav-link">Location</a></li>
+      <li><a href="#documentary" class="nav-link">Watch</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header id="home" class="hero">
+  <div class="hero-content fade-in">
+    <p class="hero-tag">✦ WELCOME TO THE FINAL FRONTIER ✦</p>
+    <h1 class="hero-title">🚀 SPACE EXPLORER</h1>
+    <p class="hero-subtitle">Discover the cosmos, chart the unknown, and explore the wonders of our solar system — one star at a time.</p>
+    <div class="hero-buttons">
+      <a href="#gallery" class="btn btn-primary">Explore Planets</a>
+      <a href="#about" class="btn btn-outline">Learn More</a>
+    </div>
+  </div>
+  <div class="hero-image-wrap fade-in">
+    <div class="astronaut-glow"></div>
+    <img id="astronautImg"
+         src="https://images.unsplash.com/photo-1454789548928-9efd52dc4031?auto=format&fit=crop&w=900&q=80"
+         alt="Astronaut floating in space against a starfield"
+         class="astronaut-img" width="480" height="480">
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll to Explore</span>
+    <div class="scroll-line"></div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about" class="section about-section">
+  <div class="section-heading fade-in">
+    <p class="section-tag">// ABOUT THE MISSION</p>
+    <h2>About Space Explorer</h2>
+  </div>
+  <div class="about-card glass-card fade-in">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg"
+         alt="Earth viewed from space, illuminated against the darkness of the cosmos"
+         class="about-img" width="380" height="380">
+    <div class="about-text">
+      <h3>Exploring the Infinite</h3>
+      <p>
+        Space Explorer is a digital gateway into the mysteries of our universe. From the scorching
+        surface of Mercury to the icy winds of Neptune, our mission is to make space science
+        accessible, beautiful, and inspiring for the next generation of explorers.
+      </p>
+      <p>
+        Built as an educational showcase, this platform blends real NASA imagery, verified planetary
+        data, and immersive design to spark curiosity about what lies beyond our atmosphere.
+        Every pixel is crafted to celebrate humanity's relentless pursuit of the stars.
+      </p>
+      <div class="about-stats">
+        <div class="stat">
+          <h4>8</h4>
+          <p>Planets Explored</p>
+        </div>
+        <div class="stat">
+          <h4>60+</h4>
+          <p>Years of Space Missions</p>
+        </div>
+        <div class="stat">
+          <h4>∞</h4>
+          <p>Wonders to Discover</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANET GALLERY -->
+<section id="gallery" class="section gallery-section">
+  <div class="section-heading fade-in">
+    <p class="section-tag">// SOLAR SYSTEM</p>
+    <h2>Planet Gallery</h2>
+    <p class="section-desc">Journey through all eight planets of our solar system, each with its own story.</p>
+  </div>
+
+  <div class="planet-carousel fade-in">
+    <button class="carousel-arrow prev-arrow" id="prevPlanet" aria-label="Previous planet">‹</button>
+
+    <div class="carousel-stage" id="carouselStage">
+      <!-- planet orbs are injected here by script.js -->
+    </div>
+
+    <button class="carousel-arrow next-arrow" id="nextPlanet" aria-label="Next planet">›</button>
+  </div>
+
+  <div class="carousel-dots" id="carouselDots"></div>
+
+  <div class="planet-details glass-card fade-in" id="planetDetails">
+    <!-- active planet's name, description, properties and link are injected here -->
+  </div>
+</section>
+
+<!-- MISSIONS / LINKS -->
+<section id="missions" class="section missions-section">
+  <div class="section-heading fade-in">
+    <p class="section-tag">// OFFICIAL RESOURCES</p>
+    <h2>Explore Further</h2>
+    <p class="section-desc">Dive deeper into real missions and imagery straight from NASA's own archives.</p>
+  </div>
+  <div class="missions-grid fade-in">
+    <a href="https://www.nasa.gov/" target="_blank" rel="noopener" class="mission-card glass-card">
+      <span class="mission-icon">🌐</span>
+      <h3>NASA Official Website</h3>
+      <p>The official hub for all things NASA — news, discoveries, and live missions.</p>
+    </a>
+    <a href="https://www.nasa.gov/missions/" target="_blank" rel="noopener" class="mission-card glass-card">
+      <span class="mission-icon">🛰️</span>
+      <h3>NASA Missions</h3>
+      <p>Track current and upcoming missions exploring Earth, the Moon, Mars, and beyond.</p>
+    </a>
+    <a href="https://solarsystem.nasa.gov/" target="_blank" rel="noopener" class="mission-card glass-card">
+      <span class="mission-icon">🪐</span>
+      <h3>Solar System</h3>
+      <p>An interactive guide to every planet, moon, and object in our solar system.</p>
+    </a>
+    <a href="https://images.nasa.gov/" target="_blank" rel="noopener" class="mission-card glass-card">
+      <span class="mission-icon">📸</span>
+      <h3>NASA Image Gallery</h3>
+      <p>Browse thousands of breathtaking images captured across decades of exploration.</p>
+    </a>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location" class="section location-section">
+  <div class="section-heading fade-in">
+    <p class="section-tag">// WHERE ROCKETS LAUNCH</p>
+    <h2>NASA Kennedy Space Center</h2>
+    <p class="section-desc">The historic launch site on Florida's Space Coast, home to America's crewed spaceflight program.</p>
+  </div>
+  <div class="map-frame glass-card fade-in">
+    <iframe
+      src="https://www.google.com/maps?q=NASA%20Kennedy%20Space%20Center&output=embed"
+      width="100%" height="450"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Google Map showing the location of NASA Kennedy Space Center">
+    </iframe>
+  </div>
+</section>
+
+<!-- DOCUMENTARY -->
+<section id="documentary" class="section documentary-section">
+  <div class="section-heading fade-in">
+    <p class="section-tag">// WATCH & LEARN</p>
+    <h2>Space Documentary</h2>
+    <p class="section-desc">Sit back and witness humanity's journey into the cosmos.</p>
+  </div>
+  <div class="video-frame glass-card fade-in">
+    <iframe
+      width="100%" height="450"
+      src="https://www.youtube.com/embed/aRxpjxYQeqk"
+      title="Space documentary video about the universe and space exploration"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+      loading="lazy">
+    </iframe>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-content fade-in">
+    <p class="footer-logo">🚀 Space<span>Explorer</span></p>
+    <p class="footer-text">Crafted with curiosity for the Web Technology Laboratory — an educational exploration of images, hyperlinks, and iframes.</p>
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#gallery">Planets</a>
+      <a href="#missions">Missions</a>
+      <a href="#location">Location</a>
+      <a href="#documentary">Watch</a>
+    </div>
+    <p class="footer-copy">© 2026 Space Explorer. Built for educational purposes.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

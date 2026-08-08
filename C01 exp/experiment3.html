@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Class Timetable</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #4f46e5, #9333ea, #ec4899);
+            padding: 40px;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h1{
+            text-align:center;
+            color:white;
+            margin-bottom:8px;
+        }
+
+        h3{
+            text-align:center;
+            color:#f3f4f6;
+            margin-bottom:30px;
+        }
+
+        table{
+            width:100%;
+            border-collapse:separate;
+            border-spacing:8px;
+        }
+
+        caption{
+            font-size:28px;
+            color:white;
+            font-weight:bold;
+            margin-bottom:20px;
+            caption-side:top;
+        }
+
+        th{
+            background:#111827;
+            color:white;
+            padding:16px;
+            border-radius:12px;
+            font-size:18px;
+        }
+
+        td{
+            padding:18px;
+            text-align:center;
+            font-weight:bold;
+            border-radius:12px;
+            transition:.3s;
+        }
+
+        td:hover{
+            transform:scale(1.05);
+        }
+
+        .ca{
+            background:#fca5a5;
+        }
+
+        .wt{
+            background:#93c5fd;
+        }
+
+        .pmla{
+            background:#86efac;
+        }
+
+        .pdsd{
+            background:#fcd34d;
+        }
+
+        .lab{
+            background:#c4b5fd;
+        }
+
+        .break{
+            background:#d1d5db;
+        }
+
+        .day{
+            background:#312e81;
+            color:white;
+        }
+
+        footer{
+            text-align:center;
+            color:white;
+            margin-top:25px;
+            font-size:16px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🏫 Saveetha School of Engineering</h1>
+
+<h3>B.Tech Information Technology • II Year • Weekly Timetable</h3>
+
+<table border="2" cellpadding="15" cellspacing="8">
+
+<caption>Semester Class Timetable</caption>
+
+<tr>
+<th>Day</th>
+<th>8:00 AM - 12:00 PM</th>
+<th>12:00 PM - 1:00 PM</th>
+<th>1:00 PM - 3:00 PM</th>
+</tr>
+
+<tr>
+<td class="day">Monday</td>
+<td class="ca">Computer Architecture</td>
+<td rowspan="6" class="break">
+🍴<br><br>
+LUNCH<br>BREAK
+</td>
+<td class="pmla">Probabilistic Methods &<br>Linear Algebra</td>
+</tr>
+
+<tr>
+<td class="day">Tuesday</td>
+<td class="wt">Web Technology</td>
+<td class="pdsd">Principles of Digital System</td>
+</tr>
+
+<tr>
+<td class="day">Wednesday</td>
+<td class="pmla">Probabilistic Methods &<br>Linear Algebra</td>
+<td class="ca">Computer Architecture</td>
+</tr>
+
+<tr>
+<td class="day">Thursday</td>
+<td class="pdsd">Principles of Digital System</td>
+<td class="wt">Web Technology</td>
+</tr>
+
+<tr>
+<td class="day">Friday</td>
+<td class="lab">Computer Architecture </td>
+<td class="lab">Probablistic Methods &<br>Linear Algebra</td>
+</tr>
+
+<tr>
+<td class="day">Saturday</td>
+<td class="wt">Web Technology</td>
+<td class="pdsd">Principles of Digital System</td>
+</tr>
+</table>
+
+<footer>
+
+Designed by Pragathi Bai | Department of Information Technology
+
+</footer>
+
+</div>
+
+</body>
+
+</html>
