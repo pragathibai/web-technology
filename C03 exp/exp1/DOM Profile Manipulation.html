@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DOM-Based Student Profile Manipulation</title>
+  <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Box Model */
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f4f5fa;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 16px 50px;
+}
+
+.page-title {
+  font-size: 1.4rem;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+/* ============ Profile card ============ */
+.profile-card {
+  background: #ffffff;
+  border: 1px solid #e2e4ee; /* Box Model: border */
+  border-radius: 14px;
+  padding: 26px; /* Box Model: padding */
+  text-align: center;
+  width: 300px;
+  max-width: 90vw;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 25px -14px rgba(0, 0, 0, 0.25);
+  transition: background 0.3s;
+}
+
+.profile-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 14px;
+}
+
+.profile-card h2 {
+  margin-bottom: 6px;
+  transition: color 0.2s;
+}
+
+.profile-card p {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+/* Hidden state, toggled via classList */
+.hidden {
+  display: none;
+}
+
+/* ============ Controls ============ */
+.controls {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.control-group {
+  background: #ffffff;
+  border: 1px solid #e2e4ee; /* Box Model: border */
+  border-radius: 10px;
+  padding: 14px 16px; /* Box Model: padding */
+}
+
+.control-group h3 {
+  font-size: 0.8rem;
+  color: #6b6f85;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+button {
+  border: none;
+  background: #4f46e5;
+  color: #fff;
+  padding: 9px 16px; /* Box Model: padding */
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-right: 8px;
+  margin-bottom: 6px;
+  transition: background 0.15s;
+}
+
+button:hover {
+  background: #372fb0;
+}
+
+.colorBtn, .bgBtn {
+  background: #eef0fe;
+  color: #333;
+}
+
+.colorBtn:hover, .bgBtn:hover {
+  background: #d9dcf9;
+}
+
+</style>
+</head>
+<body>
+
+  <h1 class="page-title">DOM-Based Student Profile Manipulation</h1>
+
+  <!-- ============ Profile card (this is what the buttons will modify) ============ -->
+  <div class="profile-card" id="profileCard">
+    <img
+      id="profileImg"
+      src="https://placehold.co/120x120/4f46e5/FFFFFF?text=Student"
+      alt="Student photo"
+      title="Student profile photo"
+      class="profile-img"
+    />
+    <h2 id="profileHeading">S Pragathi Bai</h2>
+    <p id="profileText">B.Tech, Information Technology — 2nd Year</p>
+  </div>
+
+  <!-- ============ Controls ============ -->
+  <div class="controls">
+
+    <div class="control-group">
+      <h3>textContent — change the heading</h3>
+      <button id="changeHeadingBtn">Change Heading</button>
+    </div>
+
+    <div class="control-group">
+      <h3>style — change text colour</h3>
+      <button data-color="#dc2626" class="colorBtn">Red</button>
+      <button data-color="#16a34a" class="colorBtn">Green</button>
+      <button data-color="#2563eb" class="colorBtn">Blue</button>
+    </div>
+
+    <div class="control-group">
+      <h3>style — change background colour</h3>
+      <button data-bg="#fef3c7" class="bgBtn">Cream</button>
+      <button data-bg="#dbeafe" class="bgBtn">Sky Blue</button>
+      <button data-bg="#fde2e2" class="bgBtn">Blush</button>
+    </div>
+
+    <div class="control-group">
+      <h3>classList — show / hide the profile</h3>
+      <button id="toggleVisibilityBtn">Show / Hide Profile</button>
+    </div>
+
+    <div class="control-group">
+      <h3>setAttribute — update the photo &amp; tooltip</h3>
+      <button id="changeImageBtn">Change Photo</button>
+    </div>
+
+  </div>
+
+  <script>
+// ============ 1. getElementById() — grab elements by their id ============
+const profileHeading = document.getElementById("profileHeading");
+const profileText = document.getElementById("profileText");
+const profileCard = document.getElementById("profileCard");
+const profileImg = document.getElementById("profileImg");
+
+// ============ 2. querySelector() — grab elements by CSS selector ============
+const changeHeadingBtn = document.querySelector("#changeHeadingBtn");
+const toggleVisibilityBtn = document.querySelector("#toggleVisibilityBtn");
+const changeImageBtn = document.querySelector("#changeImageBtn");
+
+// A few sample headings to cycle through
+const headings = ["S Pragathi Bai", "Welcome, Pragathi!", "IT Department Student"];
+let headingIndex = 0;
+
+// ============ 3. textContent — change the heading text ============
+changeHeadingBtn.addEventListener("click", () => {
+  headingIndex = (headingIndex + 1) % headings.length;
+  profileHeading.textContent = headings[headingIndex];
+});
+
+// ============ 4. style — change text colour ============
+document.querySelectorAll(".colorBtn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    profileHeading.style.color = btn.dataset.color;
+  });
+});
+
+// ============ 4b. style — change background colour ============
+document.querySelectorAll(".bgBtn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    profileCard.style.backgroundColor = btn.dataset.bg;
+  });
+});
+
+// ============ 5. classList — show / hide the profile ============
+toggleVisibilityBtn.addEventListener("click", () => {
+  profileCard.classList.toggle("hidden");
+});
+
+// ============ 6. setAttribute() — change the photo src & tooltip ============
+const photoOptions = [
+  { src: "https://placehold.co/120x120/4f46e5/FFFFFF?text=Student", title: "Default profile photo" },
+  { src: "https://placehold.co/120x120/16a34a/FFFFFF?text=IT", title: "IT department badge photo" },
+  { src: "https://placehold.co/120x120/dc2626/FFFFFF?text=2026", title: "Batch 2026 photo" },
+];
+let photoIndex = 0;
+
+changeImageBtn.addEventListener("click", () => {
+  photoIndex = (photoIndex + 1) % photoOptions.length;
+  const chosen = photoOptions[photoIndex];
+
+  profileImg.setAttribute("src", chosen.src);
+  profileImg.setAttribute("title", chosen.title);
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Event Registration Using JavaScript Events</title>
+  <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Box Model */
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f4f5fa;
+  color: #222;
+  padding: 30px 16px 50px;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+}
+
+.page-sub {
+  text-align: center;
+  color: #666;
+  font-size: 0.88rem;
+  margin-bottom: 24px;
+}
+
+.layout {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.log-card {
+  grid-column: 1 / -1;
+}
+
+/* ============ Shared card look ============ */
+.form-card,
+.compare-card,
+.log-card {
+  background: #fff;
+  border: 1px solid #e2e4ee; /* Box Model: border */
+  border-radius: 12px;
+  padding: 22px; /* Box Model: padding */
+  box-shadow: 0 10px 25px -16px rgba(0, 0, 0, 0.25);
+}
+
+h2 {
+  font-size: 1.05rem;
+  margin-bottom: 14px;
+}
+
+/* ============ Form ============ */
+.field {
+  margin-bottom: 14px;
+}
+
+.field label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 10px 12px; /* Box Model: padding */
+  border: 1.5px solid #d9dbe8; /* Box Model: border */
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+/* Highlight state added/removed via focus & blur events */
+.field input.field-focused,
+.field select.field-focused {
+  border-color: #4f46e5;
+  background: #f5f4ff;
+}
+
+.hover-card {
+  background: #eef0fe;
+  border: 1.5px dashed #b9bdf0; /* Box Model: border */
+  border-radius: 8px;
+  padding: 14px; /* Box Model: padding */
+  text-align: center;
+  font-size: 0.82rem;
+  color: #4f46e5;
+  margin-bottom: 16px;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.hover-card.hovering {
+  background: #dcdfff;
+  transform: scale(1.02);
+}
+
+.submit-btn {
+  width: 100%;
+  background: #4f46e5;
+  color: #fff;
+  border: none;
+  padding: 11px; /* Box Model: padding */
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background: #372fb0;
+}
+
+.success-msg {
+  margin-top: 10px;
+  font-size: 0.84rem;
+  color: #16a34a;
+  text-align: center;
+  min-height: 16px;
+}
+
+/* ============ Compare card ============ */
+.compare-note {
+  font-size: 0.82rem;
+  color: #666;
+  margin-bottom: 14px;
+}
+
+.compare-btn {
+  width: 100%;
+  padding: 11px; /* Box Model: padding */
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  font-size: 0.86rem;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.intrinsic-btn {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.intrinsic-btn:hover {
+  background: #fde68a;
+}
+
+.listener-btn {
+  background: #dbeafe;
+  color: #1e3a8a;
+}
+
+.listener-btn:hover {
+  background: #bfdbfe;
+}
+
+.compare-list {
+  list-style: none;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.compare-list li {
+  font-size: 0.78rem;
+  color: #444;
+  line-height: 1.5;
+  border-left: 3px solid #d9dbe8; /* Box Model: border */
+  padding-left: 10px; /* Box Model: padding */
+}
+
+/* ============ Event log ============ */
+.log-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.log-head button {
+  background: #fdecec;
+  color: #dc2626;
+  border: none;
+  padding: 6px 14px; /* Box Model: padding */
+  border-radius: 8px;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.event-log {
+  list-style: none;
+  max-height: 220px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.event-log li {
+  font-family: "Consolas", monospace;
+  font-size: 0.78rem;
+  padding: 8px 12px; /* Box Model: padding */
+  border-radius: 6px;
+  background: #f7f7fb;
+  border-left: 3px solid #4f46e5; /* Box Model: border */
+}
+
+.log-empty {
+  color: #999;
+  border-left-color: #ccc !important;
+  text-align: center;
+}
+
+/* ============ Media Queries ============ */
+@media (max-width: 760px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+</style>
+</head>
+<body>
+
+  <h1 class="page-title">Interactive Event Registration</h1>
+  <p class="page-sub">Every action below fires a real event — watch the log on the right.</p>
+
+  <div class="layout">
+
+    <!-- ============ Registration form ============ -->
+    <form id="regForm" class="form-card">
+      <h2>Register for an Event</h2>
+
+      <div class="field">
+        <label for="nameInput">Full Name</label>
+        <!-- focus / blur / input events -->
+        <input type="text" id="nameInput" placeholder="Your name" />
+      </div>
+
+      <div class="field">
+        <label for="emailInput">Email</label>
+        <!-- focus / blur / change events -->
+        <input type="email" id="emailInput" placeholder="you@example.com" />
+      </div>
+
+      <div class="field">
+        <label for="eventSelect">Choose an Event</label>
+        <!-- change event -->
+        <select id="eventSelect">
+          <option value="">Select</option>
+          <option>Hackathon</option>
+          <option>Web Dev Workshop</option>
+          <option>Tech Quiz</option>
+          <option>Coding Contest</option>
+        </select>
+      </div>
+
+      <!-- mouseover / mouseout -->
+      <div class="hover-card" id="hoverCard">
+        Hover over me — I log mouseover &amp; mouseout events.
+      </div>
+
+      <!-- submit event -->
+      <button type="submit" class="submit-btn">Register (submit event)</button>
+      <p class="success-msg" id="successMsg"></p>
+    </form>
+
+    <!-- ============ Intrinsic vs addEventListener comparison ============ -->
+    <div class="compare-card">
+      <h2>Intrinsic vs addEventListener()</h2>
+      <p class="compare-note">
+        Both buttons do the same thing, but are wired up differently.
+      </p>
+
+      <!-- Intrinsic event handling: the handler is written directly in the HTML attribute -->
+      <button
+        class="compare-btn intrinsic-btn"
+        onclick="logEvent('onclick (intrinsic)', 'Intrinsic Button clicked — handler written directly in the HTML onclick attribute.')"
+      >
+        Intrinsic Button (onclick="...")
+      </button>
+
+      <!-- Modern event handling: the handler is attached in script.js via addEventListener -->
+      <button class="compare-btn listener-btn" id="listenerBtn">
+        addEventListener() Button
+      </button>
+
+      <ul class="compare-list">
+        <li><strong>Intrinsic (onclick="…")</strong> — handler lives inside the HTML tag. Quick to write, but mixes JS logic into markup and only allows one handler per event.</li>
+        <li><strong>addEventListener()</strong> — handler lives in the JS file, kept separate from HTML. Supports multiple listeners on the same element/event, and is the modern best practice.</li>
+      </ul>
+    </div>
+
+    <!-- ============ Live event log ============ -->
+    <div class="log-card">
+      <div class="log-head">
+        <h2>Event Log</h2>
+        <button id="clearLogBtn">Clear</button>
+      </div>
+      <ul id="eventLog" class="event-log">
+        <li class="log-empty">Interact with the form to see events fire here…</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <script>
+// ============ Element references ============
+const nameInput = document.getElementById("nameInput");
+const emailInput = document.getElementById("emailInput");
+const eventSelect = document.getElementById("eventSelect");
+const hoverCard = document.getElementById("hoverCard");
+const regForm = document.getElementById("regForm");
+const successMsg = document.getElementById("successMsg");
+const listenerBtn = document.getElementById("listenerBtn");
+const eventLog = document.getElementById("eventLog");
+const clearLogBtn = document.getElementById("clearLogBtn");
+
+// ============ Shared logging function ============
+// Called both by the intrinsic onclick="" attribute in index.html
+// and by addEventListener handlers below — this is a global function
+// on purpose, since intrinsic handlers can only call global functions.
+function logEvent(type, message) {
+  const empty = eventLog.querySelector(".log-empty");
+  if (empty) empty.remove();
+
+  const li = document.createElement("li");
+  const time = new Date().toLocaleTimeString();
+  li.textContent = `[${time}] (${type}) ${message}`;
+
+  eventLog.insertBefore(li, eventLog.firstChild);
+}
+
+// ============ input event — fires on every keystroke ============
+nameInput.addEventListener("input", () => {
+  logEvent("input", `Name field now reads: "${nameInput.value}"`);
+});
+
+// ============ focus / blur events ============
+nameInput.addEventListener("focus", () => {
+  nameInput.classList.add("field-focused");
+  logEvent("focus", "Name field gained focus.");
+});
+
+nameInput.addEventListener("blur", () => {
+  nameInput.classList.remove("field-focused");
+  logEvent("blur", "Name field lost focus.");
+});
+
+emailInput.addEventListener("focus", () => {
+  emailInput.classList.add("field-focused");
+  logEvent("focus", "Email field gained focus.");
+});
+
+emailInput.addEventListener("blur", () => {
+  emailInput.classList.remove("field-focused");
+  logEvent("blur", "Email field lost focus.");
+});
+
+// ============ change event — fires when a field loses focus AFTER its value changed ============
+emailInput.addEventListener("change", () => {
+  logEvent("change", `Email field committed value: "${emailInput.value}"`);
+});
+
+eventSelect.addEventListener("change", () => {
+  logEvent("change", `Event selected: "${eventSelect.value}"`);
+});
+
+// ============ mouseover / mouseout events ============
+hoverCard.addEventListener("mouseover", () => {
+  hoverCard.classList.add("hovering");
+  logEvent("mouseover", "Mouse entered the hover card.");
+});
+
+hoverCard.addEventListener("mouseout", () => {
+  hoverCard.classList.remove("hovering");
+  logEvent("mouseout", "Mouse left the hover card.");
+});
+
+// ============ submit event ============
+regForm.addEventListener("submit", (e) => {
+  e.preventDefault(); // stop the page from reloading
+
+  if (!nameInput.value.trim() || !emailInput.value.trim() || !eventSelect.value) {
+    successMsg.style.color = "#dc2626";
+    successMsg.textContent = "Please fill in all fields before registering.";
+    logEvent("submit", "Form submitted but was incomplete — blocked.");
+    return;
+  }
+
+  successMsg.style.color = "#16a34a";
+  successMsg.textContent = `Registered ${nameInput.value} for ${eventSelect.value}!`;
+  logEvent("submit", `Form submitted successfully for "${eventSelect.value}".`);
+});
+
+// ============ addEventListener() button (modern handling) ============
+listenerBtn.addEventListener("click", () => {
+  logEvent(
+    "click via addEventListener()",
+    "addEventListener Button clicked — handler attached from script.js, kept separate from the HTML."
+  );
+});
+
+// ============ Clear log ============
+clearLogBtn.addEventListener("click", () => {
+  eventLog.innerHTML = '<li class="log-empty">Interact with the form to see events fire here…</li>';
+});
+
+</script>
+</body>
+</html>

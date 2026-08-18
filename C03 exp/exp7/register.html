@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Student Registration</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f5fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .form-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 30px;
+      box-shadow: 0 10px 25px -14px rgba(0, 0, 0, 0.3);
+      width: 340px;
+    }
+    h2 { margin-bottom: 14px; font-size: 1.1rem; }
+    label { display: block; font-size: 0.8rem; font-weight: 600; margin: 10px 0 4px; }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 0.9rem;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #4f46e5;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 16px;
+      font-size: 0.9rem;
+    }
+    button:hover { background: #372fb0; }
+  </style>
+</head>
+<body>
+  <div class="form-card">
+    <h2>Student Registration</h2>
+    <!-- method="post" sends the data as a POST request, handled by doPost() -->
+    <form action="register" method="post">
+      <label for="studentName">Student Name</label>
+      <input type="text" id="studentName" name="studentName" />
+
+      <label for="regNo">Register Number</label>
+      <input type="text" id="regNo" name="regNo" />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" />
+
+      <label for="department">Department</label>
+      <select id="department" name="department">
+        <option value="">Select</option>
+        <option>Computer Science</option>
+        <option>Information Technology</option>
+        <option>Electronics &amp; Communication</option>
+        <option>Mechanical</option>
+      </select>
+
+      <label for="semester">Semester</label>
+      <select id="semester" name="semester">
+        <option value="">Select</option>
+        <option>1</option><option>2</option><option>3</option><option>4</option>
+        <option>5</option><option>6</option><option>7</option><option>8</option>
+      </select>
+
+      <button type="submit">Register</button>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Student Servlet Demo</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f5fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .form-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 30px;
+      box-shadow: 0 10px 25px -14px rgba(0, 0, 0, 0.3);
+      width: 320px;
+    }
+    h2 {
+      margin-bottom: 14px;
+      font-size: 1.1rem;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 0.9rem;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #4f46e5;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+    button:hover {
+      background: #372fb0;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-card">
+    <h2>Enter Your Details</h2>
+    <!-- This form sends a GET request to /welcome, which triggers WelcomeServlet's doGet() -->
+    <form action="welcome" method="get">
+      <input type="text" name="studentName" placeholder="Your Name" required />
+      <input type="text" name="courseName" placeholder="Your Course" required />
+      <button type="submit">Generate Welcome Page</button>
+    </form>
+  </div>
+</body>
+</html>

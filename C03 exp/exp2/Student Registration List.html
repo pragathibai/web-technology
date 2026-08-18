@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dynamic Student Registration List Using DOM</title>
+  <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Box Model */
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f4f5fa;
+  color: #222;
+  padding: 30px 16px 50px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  margin-bottom: 6px;
+}
+
+.page-sub {
+  color: #666;
+  font-size: 0.88rem;
+  margin-bottom: 22px;
+}
+
+/* ============ Form card ============ */
+.form-card {
+  background: #fff;
+  border: 1px solid #e2e4ee; /* Box Model: border */
+  border-radius: 12px;
+  padding: 22px; /* Box Model: padding */
+  margin-bottom: 26px;
+  box-shadow: 0 10px 25px -16px rgba(0, 0, 0, 0.25);
+}
+
+.field {
+  margin-bottom: 14px;
+}
+
+.field label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 10px 12px; /* Box Model: padding */
+  border: 1.5px solid #d9dbe8; /* Box Model: border */
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: #4f46e5;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+button {
+  border: none;
+  padding: 10px 18px; /* Box Model: padding */
+  border-radius: 8px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+#addBtn {
+  background: #4f46e5;
+  color: #fff;
+  flex: 1;
+}
+
+#addBtn:hover {
+  background: #372fb0;
+}
+
+.clear-btn {
+  background: #fdecec;
+  color: #dc2626;
+}
+
+.clear-btn:hover {
+  background: #fbd6d6;
+}
+
+.form-error {
+  display: block;
+  min-height: 16px;
+  color: #dc2626;
+  font-size: 0.78rem;
+  margin-top: 8px;
+}
+
+/* ============ List ============ */
+.list-title {
+  font-size: 1.05rem;
+  margin-bottom: 12px;
+}
+
+.student-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.student-item {
+  background: #fff;
+  border: 1px solid #e2e4ee; /* Box Model: border */
+  border-radius: 10px;
+  padding: 14px 16px; /* Box Model: padding */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.student-info strong {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+
+.student-info span {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.remove-btn {
+  background: #fdecec;
+  color: #dc2626;
+  padding: 6px 12px; /* Box Model: padding */
+  font-size: 0.78rem;
+}
+
+.remove-btn:hover {
+  background: #f8bcbc;
+}
+
+.empty-msg {
+  text-align: center;
+  color: #999;
+  font-size: 0.85rem;
+  padding: 20px; /* Box Model: padding */
+}
+
+</style>
+</head>
+<body>
+
+  <h1 class="page-title">Dynamic Student Registration List</h1>
+  <p class="page-sub">Add, display, and remove student records using createElement() &amp; appendChild().</p>
+
+  <!-- ============ Add student form ============ -->
+  <div class="form-card">
+    <div class="field">
+      <label for="nameInput">Student Name</label>
+      <input type="text" id="nameInput" placeholder="e.g. S Pragathi Bai" />
+    </div>
+    <div class="field">
+      <label for="regInput">Register Number</label>
+      <input type="text" id="regInput" placeholder="e.g. 192521069" />
+    </div>
+    <div class="field">
+      <label for="deptInput">Department</label>
+      <select id="deptInput">
+        <option value="">Select</option>
+        <option>Computer Science</option>
+        <option>Information Technology</option>
+        <option>Electronics &amp; Communication</option>
+        <option>Mechanical</option>
+        <option>Electrical</option>
+        <option>Civil</option>
+      </select>
+    </div>
+
+    <div class="form-actions">
+      <button id="addBtn">+ Add Student</button>
+      <button id="clearBtn" class="clear-btn">Clear All</button>
+    </div>
+    <span class="form-error" id="formError"></span>
+  </div>
+
+  <!-- ============ Dynamic list ============ -->
+  <h2 class="list-title">Registered Students (<span id="countTag">0</span>)</h2>
+  <ul id="studentList" class="student-list">
+    <!-- <li> elements are created dynamically in script.js -->
+  </ul>
+  <p class="empty-msg" id="emptyMsg">No students registered yet.</p>
+
+  <script>
+// ============ Element references ============
+const nameInput = document.getElementById("nameInput");
+const regInput = document.getElementById("regInput");
+const deptInput = document.getElementById("deptInput");
+const addBtn = document.getElementById("addBtn");
+const clearBtn = document.getElementById("clearBtn");
+const formError = document.getElementById("formError");
+const studentList = document.getElementById("studentList");
+const countTag = document.getElementById("countTag");
+const emptyMsg = document.getElementById("emptyMsg");
+
+// ============ Update the count + empty message using .children ============
+function updateCount() {
+  const total = studentList.children.length; // .children counts the <li> elements
+  countTag.textContent = total;
+  emptyMsg.style.display = total === 0 ? "block" : "none";
+}
+
+// ============ Add a student ============
+addBtn.addEventListener("click", () => {
+  const name = nameInput.value.trim();
+  const reg = regInput.value.trim();
+  const dept = deptInput.value;
+
+  formError.textContent = "";
+
+  if (!name || !reg || !dept) {
+    formError.textContent = "Please fill in all three fields before adding.";
+    return;
+  }
+
+  // ---- createElement(): build the <li> and its inner pieces from scratch ----
+  const li = document.createElement("li");
+  li.className = "student-item";
+
+  const infoDiv = document.createElement("div");
+  infoDiv.className = "student-info";
+
+  const nameEl = document.createElement("strong");
+  nameEl.textContent = name;
+
+  const detailEl = document.createElement("span");
+  detailEl.textContent = `${reg} — ${dept}`;
+
+  const removeBtn = document.createElement("button");
+  removeBtn.textContent = "Remove";
+  removeBtn.className = "remove-btn";
+
+  // ---- appendChild(): assemble the pieces into the <li> ----
+  infoDiv.appendChild(nameEl);
+  infoDiv.appendChild(detailEl);
+  li.appendChild(infoDiv);
+  li.appendChild(removeBtn);
+
+  // ---- remove() + parentElement: delete just this student when clicked ----
+  removeBtn.addEventListener("click", () => {
+    removeBtn.parentElement.remove(); // parentElement is the <li>; remove() deletes it
+    updateCount();
+  });
+
+  // ---- appendChild(): add the finished <li> to the list ----
+  studentList.appendChild(li);
+
+  // Reset the form for the next entry
+  nameInput.value = "";
+  regInput.value = "";
+  deptInput.value = "";
+  nameInput.focus();
+
+  updateCount();
+});
+
+// ============ Clear All ============
+clearBtn.addEventListener("click", () => {
+  // While there are still children, keep removing the last one
+  while (studentList.children.length > 0) {
+    studentList.children[0].remove();
+  }
+  updateCount();
+});
+
+// ============ Initial paint ============
+updateCount();
+
+</script>
+</body>
+</html>

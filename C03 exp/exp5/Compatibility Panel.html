@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cross-Browser Compatibility Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+/* ============ Reset & tokens ============ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Box Model */
+}
+
+:root {
+  --bg: #0b0f17;
+  --panel: #131a26;
+  --panel-2: #0f151f;
+  --border: #232c3d;
+  --text: #cdd6e8;
+  --muted: #7a869e;
+  --green: #22c55e;
+  --red: #ef4444;
+  --amber: #f59e0b;
+  --cyan: #38bdf8;
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 15% 0%, #16233a 0%, transparent 45%),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--font-mono);
+  padding: 34px 18px 50px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ============ Scanline ambience ============ */
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  opacity: 0.5;
+  animation: sweep 5s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes sweep {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+/* ============ Header ============ */
+.panel-head {
+  max-width: 900px;
+  margin: 0 auto 26px;
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--cyan);
+}
+
+.panel-head h1 {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  margin: 8px 0 6px;
+  color: #f1f4fb;
+}
+
+.panel-head .sub {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+/* ============ Status grid ============ */
+.status-grid {
+  max-width: 900px;
+  margin: 0 auto 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+/* Fallback for browsers without Grid support */
+@supports not (display: grid) {
+  .status-grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .status-card {
+    flex: 1 1 45%;
+  }
+}
+
+.status-card {
+  background: var(--panel);
+  border: 1px solid var(--border); /* Box Model: border */
+  border-radius: 12px;
+  padding: 16px; /* Box Model: padding */
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.status-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--cyan);
+}
+
+.led {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-top: 4px;
+  flex-shrink: 0;
+  background: var(--muted);
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.led.on {
+  background: var(--green);
+  box-shadow: 0 0 10px 2px rgba(34, 197, 94, 0.6);
+}
+
+.led.off {
+  background: var(--red);
+  box-shadow: 0 0 10px 2px rgba(239, 68, 68, 0.6);
+}
+
+.status-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.feature-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: #f1f4fb;
+  font-size: 0.94rem;
+}
+
+.feature-check {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.feature-result {
+  font-size: 0.76rem;
+  margin-top: 4px;
+  font-weight: 700;
+}
+
+.feature-result.supported { color: var(--green); }
+.feature-result.unsupported { color: var(--red); }
+
+/* ============ Report bar ============ */
+.report-bar {
+  max-width: 900px;
+  margin: 0 auto 26px;
+  background: var(--panel-2);
+  border: 1px solid var(--border); /* Box Model: border */
+  border-radius: 10px;
+  padding: 12px 16px; /* Box Model: padding */
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--cyan);
+}
+
+/* ============ Demo cards ============ */
+.demo-card {
+  max-width: 900px;
+  margin: 0 auto 20px;
+  background: var(--panel);
+  border: 1px solid var(--border); /* Box Model: border */
+  border-radius: 14px;
+  padding: 22px; /* Box Model: padding */
+}
+
+.demo-card h2 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+  color: #f1f4fb;
+}
+
+.demo-note {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+
+.demo-note code {
+  background: var(--panel-2);
+  padding: 1px 6px; /* Box Model: padding */
+  border-radius: 4px;
+  color: var(--cyan);
+}
+
+#noteBox {
+  width: 100%;
+  min-height: 80px;
+  background: var(--panel-2);
+  border: 1.5px solid var(--border); /* Box Model: border */
+  border-radius: 8px;
+  padding: 12px; /* Box Model: padding */
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  resize: vertical;
+  margin-bottom: 12px;
+}
+
+#noteBox:focus {
+  outline: none;
+  border-color: var(--cyan);
+}
+
+.demo-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#saveNoteBtn {
+  background: var(--cyan);
+  color: #04202f;
+  border: none;
+  padding: 10px 18px; /* Box Model: padding */
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  font-family: var(--font-display);
+}
+
+#saveNoteBtn:hover {
+  filter: brightness(1.1);
+}
+
+.save-status {
+  font-size: 0.78rem;
+  color: var(--green);
+}
+
+/* ============ Layout fallback demo ============ */
+.layout-badge {
+  display: inline-block;
+  background: var(--panel-2);
+  border: 1px solid var(--border); /* Box Model: border */
+  color: var(--amber);
+  font-size: 0.72rem;
+  padding: 5px 12px; /* Box Model: padding */
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+
+.tile-row {
+  display: flex; /* base/fallback layout */
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Modern browsers: switch to CSS Grid via @supports */
+@supports (display: grid) {
+  .tile-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.tile {
+  background: linear-gradient(160deg, #1c2a40, #131a26);
+  border: 1px solid var(--border); /* Box Model: border */
+  border-radius: 10px;
+  padding: 20px; /* Box Model: padding */
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--cyan);
+  flex: 1 1 100px; /* used only when flex fallback is active */
+  transition: border-color 0.2s;
+}
+
+.tile:hover {
+  border-color: var(--cyan);
+}
+
+/* ============ Footer ============ */
+.page-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+
+/* ============ Media Queries ============ */
+@media (max-width: 700px) {
+  .status-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tile-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+</style>
+</head>
+<body>
+
+  <div class="scanline" aria-hidden="true"></div>
+
+  <header class="panel-head">
+    <span class="eyebrow">SYSTEM DIAGNOSTICS</span>
+    <h1>Cross-Browser Compatibility Panel</h1>
+    <p class="sub">Feature-detecting this browser in real time — no assumptions, no guessing.</p>
+  </header>
+
+  <!-- ============ Feature status grid ============ -->
+  <section class="status-grid" id="statusGrid">
+
+    <div class="status-card" id="card-localStorage">
+      <div class="led" id="led-localStorage"></div>
+      <div class="status-body">
+        <span class="feature-name">localStorage</span>
+        <span class="feature-check">typeof window.localStorage !== 'undefined'</span>
+        <span class="feature-result" id="result-localStorage">Checking…</span>
+      </div>
+    </div>
+
+    <div class="status-card" id="card-querySelector">
+      <div class="led" id="led-querySelector"></div>
+      <div class="status-body">
+        <span class="feature-name">querySelector()</span>
+        <span class="feature-check">!!document.querySelector</span>
+        <span class="feature-result" id="result-querySelector">Checking…</span>
+      </div>
+    </div>
+
+    <div class="status-card" id="card-grid">
+      <div class="led" id="led-grid"></div>
+      <div class="status-body">
+        <span class="feature-name">CSS Grid</span>
+        <span class="feature-check">CSS.supports('display','grid')</span>
+        <span class="feature-result" id="result-grid">Checking…</span>
+      </div>
+    </div>
+
+    <div class="status-card" id="card-backdrop">
+      <div class="led" id="led-backdrop"></div>
+      <div class="status-body">
+        <span class="feature-name">backdrop-filter</span>
+        <span class="feature-check">CSS.supports('backdrop-filter','blur(4px)')</span>
+        <span class="feature-result" id="result-backdrop">Checking…</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============ System report summary ============ -->
+  <section class="report-bar" id="reportBar">
+    <span id="reportText">Scanning…</span>
+  </section>
+
+  <!-- ============ Live demo: localStorage with fallback ============ -->
+  <section class="demo-card">
+    <h2>Live Demo — Persistent Notes</h2>
+    <p class="demo-note" id="storageNote">Checking storage support…</p>
+
+    <textarea id="noteBox" placeholder="Type a note — it will try to save automatically…"></textarea>
+    <div class="demo-actions">
+      <button id="saveNoteBtn">Save Note</button>
+      <span class="save-status" id="saveStatus"></span>
+    </div>
+  </section>
+
+  <!-- ============ Live demo: CSS Grid vs Flexbox fallback ============ -->
+  <section class="demo-card">
+    <h2>Live Demo — Layout Fallback</h2>
+    <p class="demo-note">
+      This tile row uses <code>@supports (display: grid)</code> in the CSS.
+      If your browser doesn't support Grid, it silently falls back to a
+      Flexbox layout instead — no broken page, just a slightly different layout.
+    </p>
+    <span class="layout-badge" id="layoutBadge">Detecting layout mode…</span>
+
+    <div class="tile-row" id="tileRow">
+      <div class="tile">Tile 1</div>
+      <div class="tile">Tile 2</div>
+      <div class="tile">Tile 3</div>
+      <div class="tile">Tile 4</div>
+    </div>
+  </section>
+
+  <footer class="page-footer">
+    Web Technology Lab &mdash; Cross-Browser Compatible Interactive Webpage
+  </footer>
+
+  <script>
+// ============ Feature detection helpers ============
+
+// 1. localStorage — must actually try to use it, since some browsers
+// expose the object but throw when private/incognito mode blocks it.
+function hasLocalStorage() {
+  try {
+    const testKey = "__feature_test__";
+    window.localStorage.setItem(testKey, "1");
+    window.localStorage.removeItem(testKey);
+    return true;
+  } catch (err) {
+    return false;
+  }
+}
+
+// 2. querySelector — simple existence check
+function hasQuerySelector() {
+  return !!document.querySelector;
+}
+
+// 3 & 4. CSS features — the CSS.supports() API mirrors @supports in CSS
+function hasCssSupport(prop, value) {
+  return typeof window.CSS !== "undefined" && CSS.supports(prop, value);
+}
+
+// ============ Run all checks ============
+const results = {
+  localStorage: hasLocalStorage(),
+  querySelector: hasQuerySelector(),
+  grid: hasCssSupport("display", "grid"),
+  backdrop: hasCssSupport("backdrop-filter", "blur(4px)"),
+};
+
+// ============ Paint each status card ============
+function paintStatus(key, supported, supportedText, unsupportedText) {
+  const led = document.getElementById("led-" + key);
+  const result = document.getElementById("result-" + key);
+
+  led.classList.add(supported ? "on" : "off");
+  result.textContent = supported ? supportedText : unsupportedText;
+  result.classList.add(supported ? "supported" : "unsupported");
+}
+
+paintStatus(
+  "localStorage",
+  results.localStorage,
+  "✔ Supported — data will persist across page reloads.",
+  "✘ Not available — falling back to in-memory storage for this session."
+);
+
+paintStatus(
+  "querySelector",
+  results.querySelector,
+  "✔ Supported — using modern selector syntax throughout.",
+  "✘ Not available — falling back to getElementById()/getElementsByTagName()."
+);
+
+paintStatus(
+  "grid",
+  results.grid,
+  "✔ Supported — layout below uses real CSS Grid.",
+  "✘ Not available — layout below falls back to Flexbox."
+);
+
+paintStatus(
+  "backdrop",
+  results.backdrop,
+  "✔ Supported — glass-blur effects would render correctly.",
+  "✘ Not available — any blur effects gracefully degrade to a solid background."
+);
+
+// ============ Report summary ============
+const reportText = document.getElementById("reportText");
+const supportedCount = Object.values(results).filter(Boolean).length;
+const total = Object.keys(results).length;
+
+reportText.textContent =
+  `SCAN COMPLETE — ${supportedCount} / ${total} modern features supported on this browser (${navigator.userAgent.split(") ")[0]})`;
+
+// ============ Live demo: localStorage with graceful fallback ============
+const noteBox = document.getElementById("noteBox");
+const saveNoteBtn = document.getElementById("saveNoteBtn");
+const saveStatus = document.getElementById("saveStatus");
+const storageNote = document.getElementById("storageNote");
+
+const STORAGE_KEY = "compat_demo_note";
+let inMemoryNote = ""; // fallback storage used when localStorage is unavailable
+
+if (results.localStorage) {
+  storageNote.textContent =
+    "localStorage is supported — your note below will still be here if you reload this page.";
+  const saved = window.localStorage.getItem(STORAGE_KEY);
+  if (saved) noteBox.value = saved;
+} else {
+  storageNote.textContent =
+    "localStorage is NOT supported here — using an in-memory fallback instead. Your note will be lost on reload, but the app still works.";
+}
+
+saveNoteBtn.addEventListener("click", () => {
+  const value = noteBox.value;
+
+  if (results.localStorage) {
+    // Use real localStorage: querySelector() is also demonstrated here,
+    // as this whole app selects elements via document.querySelector/getElementById above.
+    window.localStorage.setItem(STORAGE_KEY, value);
+    saveStatus.textContent = "Saved to localStorage ✔";
+  } else {
+    // Fallback path: keep it in a plain JS variable for this session only
+    inMemoryNote = value;
+    saveStatus.textContent = "Saved in-memory (fallback) ✔";
+  }
+
+  setTimeout(() => (saveStatus.textContent = ""), 2000);
+});
+
+// ============ Live demo: report which layout mode is active ============
+const layoutBadge = document.getElementById("layoutBadge");
+layoutBadge.textContent = results.grid
+  ? "🟢 Layout mode: CSS Grid (native support detected)"
+  : "🟡 Layout mode: Flexbox fallback (Grid not supported)";
+
+</script>
+</body>
+</html>

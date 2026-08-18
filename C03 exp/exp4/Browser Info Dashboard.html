@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browser Information Dashboard</title>
+  <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Box Model */
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f4f5fa;
+  color: #222;
+  padding: 30px 16px 0;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 6px;
+}
+
+.page-sub {
+  text-align: center;
+  color: #666;
+  font-size: 0.86rem;
+  max-width: 560px;
+  margin: 0 auto 26px;
+}
+
+.page-sub code {
+  background: #e9eaf7;
+  padding: 1px 5px; /* Box Model: padding */
+  border-radius: 4px;
+  font-family: "Consolas", monospace;
+}
+
+/* Values that change stay pinned at the top so scrolling doesn't hide them */
+.dash-grid {
+  position: sticky;
+  top: 0;
+  background: #f4f5fa;
+  z-index: 5;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 10px 0 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e2e4ee; /* Box Model: border */
+  border-radius: 12px;
+  padding: 18px; /* Box Model: padding */
+  box-shadow: 0 10px 25px -18px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px -16px rgba(0, 0, 0, 0.3);
+}
+
+.card-label {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #666;
+}
+
+.card-value {
+  font-family: "Consolas", monospace;
+  font-size: 1.25rem;
+  color: #4f46e5;
+  word-break: break-word;
+}
+
+.card-value.small {
+  font-size: 0.82rem;
+}
+
+.card-src {
+  font-size: 0.68rem;
+  color: #999;
+}
+
+/* ============ Scroll filler content ============ */
+.scroll-filler {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 0 10px 60px; /* Box Model: padding */
+  text-align: center;
+  color: #777;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.filler-block {
+  height: 1200px;
+  background: repeating-linear-gradient(
+    to bottom,
+    #eceefa,
+    #eceefa 40px,
+    #e3e5f6 40px,
+    #e3e5f6 80px
+  );
+  border-radius: 12px;
+}
+
+/* ============ Media Queries ============ */
+@media (max-width: 800px) {
+  .dash-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .dash-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+</style>
+</head>
+<body>
+
+  <h1 class="page-title">Browser Information Dashboard</h1>
+  <p class="page-sub">Live values from the <code>window</code>, <code>navigator</code>, and <code>screen</code> objects. Try resizing the window or scrolling this page.</p>
+
+  <div class="dash-grid">
+
+    <div class="card">
+      <span class="card-label">Current URL</span>
+      <strong id="urlVal" class="card-value small">—</strong>
+      <span class="card-src">window.location.href</span>
+    </div>
+
+    <div class="card">
+      <span class="card-label">Browser Language</span>
+      <strong id="langVal" class="card-value">—</strong>
+      <span class="card-src">navigator.language</span>
+    </div>
+
+    <div class="card">
+      <span class="card-label">Connection Status</span>
+      <strong id="statusVal" class="card-value">—</strong>
+      <span class="card-src">navigator.onLine + online/offline events</span>
+    </div>
+
+    <div class="card">
+      <span class="card-label">Screen Size (full monitor)</span>
+      <strong id="screenVal" class="card-value">—</strong>
+      <span class="card-src">screen.width / screen.height</span>
+    </div>
+
+    <div class="card">
+      <span class="card-label">Viewport Size (browser window)</span>
+      <strong id="viewportVal" class="card-value">—</strong>
+      <span class="card-src">window.innerWidth / window.innerHeight — resize the window!</span>
+    </div>
+
+    <div class="card">
+      <span class="card-label">Scroll Position</span>
+      <strong id="scrollVal" class="card-value">—</strong>
+      <span class="card-src">window.scrollX / window.scrollY — scroll this page!</span>
+    </div>
+
+  </div>
+
+  <!-- Extra height purely so there's something to scroll, to demo scrollX/scrollY -->
+  <div class="scroll-filler">
+    <p>Keep scrolling down — watch the "Scroll Position" card update live above ⬆</p>
+    <p>Try resizing your browser window too — the "Viewport Size" card updates on the <code>resize</code> event.</p>
+    <p>If you're on a laptop, try turning Wi-Fi off and on — the "Connection Status" card listens for the browser's <code>online</code> and <code>offline</code> events.</p>
+    <div class="filler-block"></div>
+  </div>
+
+  <script>
+// ============ Element references ============
+const urlVal = document.getElementById("urlVal");
+const langVal = document.getElementById("langVal");
+const statusVal = document.getElementById("statusVal");
+const screenVal = document.getElementById("screenVal");
+const viewportVal = document.getElementById("viewportVal");
+const scrollVal = document.getElementById("scrollVal");
+
+// ============ window.location — current URL ============
+function updateUrl() {
+  urlVal.textContent = window.location.href;
+}
+
+// ============ navigator.language — browser language ============
+function updateLanguage() {
+  langVal.textContent = navigator.language;
+}
+
+// ============ navigator.onLine — online/offline status ============
+function updateStatus() {
+  const online = navigator.onLine;
+  statusVal.textContent = online ? "🟢 Online" : "🔴 Offline";
+  statusVal.style.color = online ? "#16a34a" : "#dc2626";
+}
+
+// ============ screen.width / screen.height — full monitor size ============
+function updateScreenSize() {
+  screenVal.textContent = `${screen.width} × ${screen.height} px`;
+}
+
+// ============ window.innerWidth / window.innerHeight — viewport size ============
+function updateViewportSize() {
+  viewportVal.textContent = `${window.innerWidth} × ${window.innerHeight} px`;
+}
+
+// ============ window.scrollX / window.scrollY — scroll position ============
+function updateScrollPosition() {
+  scrollVal.textContent = `X: ${Math.round(window.scrollX)}, Y: ${Math.round(window.scrollY)}`;
+}
+
+// ============ Initial paint (runs once on page load) ============
+updateUrl();
+updateLanguage();
+updateStatus();
+updateScreenSize();
+updateViewportSize();
+updateScrollPosition();
+
+// ============ Live updates via events ============
+
+// resize event — fires whenever the browser window is resized
+window.addEventListener("resize", updateViewportSize);
+
+// scroll event — fires whenever the page is scrolled
+window.addEventListener("scroll", updateScrollPosition);
+
+// online / offline events — fire when the network connection changes
+window.addEventListener("online", updateStatus);
+window.addEventListener("offline", updateStatus);
+
+</script>
+</body>
+</html>
