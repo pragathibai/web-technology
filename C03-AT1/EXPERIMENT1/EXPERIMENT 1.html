@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Registration Preview</title>
+  <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Box Model */
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f4f5fa;
+  color: #222;
+  padding: 30px 16px 50px;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+}
+
+.page-sub {
+  text-align: center;
+  color: #666;
+  font-size: 0.86rem;
+  margin-bottom: 24px;
+}
+
+.layout {
+  max-width: 760px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+/* ============ Form card ============ */
+.form-card {
+  background: #fff;
+  border: 1px solid #e2e4ee; /* Box Model: border */
+  border-radius: 12px;
+  padding: 22px; /* Box Model: padding */
+  box-shadow: 0 10px 25px -16px rgba(0, 0, 0, 0.25);
+}
+
+.field {
+  margin-bottom: 14px;
+}
+
+.field label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 10px 12px; /* Box Model: padding */
+  border: 1.5px solid #d9dbe8; /* Box Model: border */
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: #4f46e5;
+}
+
+.btn-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+button {
+  border: none;
+  padding: 10px 14px; /* Box Model: padding */
+  border-radius: 8px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  flex: 1;
+  transition: background 0.15s;
+}
+
+#displayBtn {
+  background: #4f46e5;
+  color: #fff;
+}
+
+#displayBtn:hover {
+  background: #372fb0;
+}
+
+.remove-btn {
+  background: #fdecec;
+  color: #dc2626;
+}
+
+.remove-btn:hover {
+  background: #fbd6d6;
+}
+
+.form-error {
+  display: block;
+  min-height: 16px;
+  color: #dc2626;
+  font-size: 0.76rem;
+  margin-top: 8px;
+}
+
+/* ============ Preview area ============ */
+.preview-area {
+  background: #fff;
+  border: 1.5px dashed #d9dbe8; /* Box Model: border */
+  border-radius: 12px;
+  padding: 22px; /* Box Model: padding */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+.placeholder {
+  color: #999;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* The generated profile card — created dynamically in JS */
+.profile-card {
+  width: 100%;
+  text-align: center;
+  padding: 10px; /* Box Model: padding */
+}
+
+.profile-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #4f46e5;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin: 0 auto 12px;
+}
+
+.profile-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.profile-detail {
+  font-size: 0.82rem;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.profile-tag {
+  display: inline-block;
+  margin-top: 8px;
+  background: #eef0fe;
+  color: #4f46e5;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 12px; /* Box Model: padding */
+  border-radius: 999px;
+}
+
+/* classList toggled on the preview area itself once a profile is showing */
+.preview-area.has-profile {
+  border-style: solid;
+  border-color: #c7cbf5;
+  background: #f8f8ff;
+}
+
+/* ============ Media Queries ============ */
+@media (max-width: 640px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+</style>
+</head>
+<body>
+
+  <h1 class="page-title">Student Registration Preview</h1>
+  <p class="page-sub">Fill the form and click Display — your profile appears instantly below, no page reload.</p>
+
+  <div class="layout">
+
+    <!-- ============ Form ============ -->
+    <div class="form-card">
+      <div class="field">
+        <label for="nameInput">Name</label>
+        <input type="text" id="nameInput" placeholder="e.g. S Pragathi Bai" />
+      </div>
+
+      <div class="field">
+        <label for="regInput">Register Number</label>
+        <input type="text" id="regInput" placeholder="e.g. 192521069" />
+      </div>
+
+      <div class="field">
+        <label for="deptInput">Department</label>
+        <select id="deptInput">
+          <option value="">Select</option>
+          <option>Computer Science</option>
+          <option>Information Technology</option>
+          <option>Electronics &amp; Communication</option>
+          <option>Mechanical</option>
+          <option>Electrical</option>
+          <option>Civil</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="yearInput">Year of Study</label>
+        <select id="yearInput">
+          <option value="">Select</option>
+          <option>1st Year</option>
+          <option>2nd Year</option>
+          <option>3rd Year</option>
+          <option>4th Year</option>
+        </select>
+      </div>
+
+      <div class="btn-row">
+        <button id="displayBtn">Display Profile</button>
+        <button id="removeBtn" class="remove-btn">Remove Profile</button>
+      </div>
+      <span class="form-error" id="formError"></span>
+    </div>
+
+    <!-- ============ Generated profile appears here ============ -->
+    <div class="preview-area" id="previewArea">
+      <p class="placeholder">No profile displayed yet.</p>
+    </div>
+
+  </div>
+
+  <script>
+// ============ getElementById() / querySelector() — read the form values ============
+const nameInput = document.getElementById("nameInput");
+const regInput = document.querySelector("#regInput");
+const deptInput = document.getElementById("deptInput");
+const yearInput = document.querySelector("#yearInput");
+
+const displayBtn = document.getElementById("displayBtn");
+const removeBtn = document.getElementById("removeBtn");
+const formError = document.getElementById("formError");
+const previewArea = document.getElementById("previewArea");
+
+// ============ addEventListener() — Display action ============
+displayBtn.addEventListener("click", () => {
+  const name = nameInput.value.trim();
+  const reg = regInput.value.trim();
+  const dept = deptInput.value;
+  const year = yearInput.value;
+
+  formError.textContent = "";
+
+  if (!name || !reg || !dept || !year) {
+    formError.textContent = "Please fill in all fields before displaying.";
+    return;
+  }
+
+  // Clear any previous profile before building a new one
+  previewArea.innerHTML = "";
+
+  // ---- createElement(): build the profile card from scratch ----
+  const card = document.createElement("div");
+  card.className = "profile-card";
+
+  const avatar = document.createElement("div");
+  avatar.className = "profile-avatar";
+  // Show the student's initials in the avatar circle
+  const initials = name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0].toUpperCase())
+    .join("");
+  avatar.textContent = initials || "?";
+
+  // ---- textContent: fill in each detail ----
+  const nameEl = document.createElement("div");
+  nameEl.className = "profile-name";
+  nameEl.textContent = name;
+
+  const regEl = document.createElement("div");
+  regEl.className = "profile-detail";
+  regEl.textContent = "Reg No: " + reg;
+
+  const deptEl = document.createElement("div");
+  deptEl.className = "profile-detail";
+  deptEl.textContent = dept;
+
+  const yearEl = document.createElement("div");
+  yearEl.className = "profile-tag";
+  yearEl.textContent = year;
+
+  // Assemble the card
+  card.appendChild(avatar);
+  card.appendChild(nameEl);
+  card.appendChild(regEl);
+  card.appendChild(deptEl);
+  card.appendChild(yearEl);
+
+  previewArea.appendChild(card);
+
+  // ---- classList: visually distinguish the preview area once filled ----
+  previewArea.classList.add("has-profile");
+});
+
+// ============ addEventListener() — Remove action ============
+removeBtn.addEventListener("click", () => {
+  // Reset the preview area back to its placeholder state
+  previewArea.innerHTML = '<p class="placeholder">No profile displayed yet.</p>';
+  previewArea.classList.remove("has-profile");
+  formError.textContent = "";
+});
+
+</script>
+</body>
+</html>

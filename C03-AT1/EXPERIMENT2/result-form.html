@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Student Result Entry</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f5fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+    .form-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 30px;
+      box-shadow: 0 10px 25px -14px rgba(0, 0, 0, 0.3);
+      width: 340px;
+    }
+    h2 { margin-bottom: 14px; font-size: 1.1rem; }
+    label { display: block; font-size: 0.8rem; font-weight: 600; margin: 10px 0 4px; }
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 0.9rem;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #4f46e5;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 16px;
+      font-size: 0.9rem;
+    }
+    button:hover { background: #372fb0; }
+    small { color: #888; font-size: 0.72rem; }
+  </style>
+</head>
+<body>
+  <div class="form-card">
+    <h2>Enter Student Result Details</h2>
+    <!-- method="post" — required by the question, handled by doPost() -->
+    <form action="processResult" method="post">
+      <label for="studentName">Student Name</label>
+      <input type="text" id="studentName" name="studentName" />
+
+      <label for="regNo">Register Number</label>
+      <input type="text" id="regNo" name="regNo" />
+
+      <label for="m0">Subject 1 Marks <small>(0-100)</small></label>
+      <input type="text" id="m0" name="mark0" />
+
+      <label for="m1">Subject 2 Marks <small>(0-100)</small></label>
+      <input type="text" id="m1" name="mark1" />
+
+      <label for="m2">Subject 3 Marks <small>(0-100)</small></label>
+      <input type="text" id="m2" name="mark2" />
+
+      <button type="submit">Calculate Result</button>
+    </form>
+  </div>
+</body>
+</html>
